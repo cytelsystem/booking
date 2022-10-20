@@ -1,54 +1,64 @@
 @import './variables.scss';
 
 @font-face {
-  font-family: 'Roboto Light';
-  src: url('assets/fonts/Roboto-Light.ttf');
-  font-weight: normal;
-  font-style: normal;
+   font-family: 'Roboto Light';
+   src: url('assets/fonts/Roboto-Light.ttf');
+   font-weight: normal;
+   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Roboto Bold';
-  src: url('assets/fonts/Roboto-Bold.ttf');
+   font-family: 'Roboto Bold';
+   src: url('assets/fonts/Roboto-Bold.ttf');
 }
 
 @font-face {
-  font-family: 'Roboto Medium';
-  src: url('assets/fonts/Roboto-Medium.ttf');
+   font-family: 'Roboto Medium';
+   src: url('assets/fonts/Roboto-Medium.ttf');
+}
+
+* {
+   margin: 0;
+   padding: 0;
 }
 
 body {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
 }
 
-body, h1, h2, h3, h4 {
-  font-family: 'Roboto Bold';
-  font-weight: var(--font-weight-bold);
+body,
+h1,
+h2,
+h3,
+h4 {
+   font-family: 'Roboto Bold';
+   font-weight: var(--font-weight-bold);
 }
 
-p, span {
-  font-family: 'Roboto Medium';
-  font-weight: var(--font-weight-semi-bold);
+p,
+span {
+   font-family: 'Roboto Medium';
+   font-weight: var(--font-weight-semi-bold);
 }
 
 h1 {
-  font-size: var(--font-size-bigger);
+   font-size: var(--font-size-bigger);
 }
 
 h2 {
-  font-size: var(--font-size-big);
+   font-size: var(--font-size-big);
 }
 
 h3 {
-  font-size: var(--font-size-medium);
+   font-size: var(--font-size-medium);
 }
 
 h4 {
-  font-size: var(--font-size-small);
+   font-size: var(--font-size-small);
 }
 
 p {
-  font-size: var(--font-size-small);
+   font-size: var(--font-size-small);
 }
