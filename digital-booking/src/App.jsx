@@ -1,35 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.scss'
-import Button from './shared/Button/Button'
+import Footer from './components/Footer/Footer';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+   return (
+      <div id="app">
+         {/* here goes the header :) */}
+         <main>{/* routes :) */}</main>
+         <Footer>©2022 Digital Booking</Footer>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Button classList={'db-button-smaller db-button-primary'} action={() => setCount((count) => count + 1)} isDisabled={false}>
-          Count is {count}
-        </Button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+   );
 }
 
-export default App
+export default App;
