@@ -1,28 +1,14 @@
-import './Footer.scss';
-import FacebookIcon from '../../shared/Icons/FacebookIcon';
-import LinkedInIcon from '../../shared/Icons/LinkedInIcon';
-import InstagramIcon from '../../shared/Icons/InstagramIcon';
-import TwitterIcon from '../../shared/Icons/TwitterIcon';
+import SocialNetworks from '../SocialNetworks/SocialNetworks';
+import './Footer.scss'
 
-const Footer = () => {
+const Footer = ({ children }) => {
    return (
       <footer>
          <article className="leftSide">
-            <p>©2022 Digital Booking</p>
+            <p>{children}</p>
          </article>
          <article className="rightSide">
-            <a href="#">
-               <FacebookIcon />
-            </a>
-            <a href="#">
-               <LinkedInIcon />
-            </a>
-            <a href="#">
-               <TwitterIcon />
-            </a>
-            <a href="#">
-               <InstagramIcon />
-            </a>
+            <SocialNetworks />
          </article>
       </footer>
    );

@@ -1,11 +1,13 @@
-import { useState } from 'react';
 import Footer from './components/Footer/Footer';
-import Layout from './shared/Layout/Layout';
 
 function App() {
-   const [count, setCount] = useState(0);
-
-   return <Layout></Layout>;
+   return (
+      <div id="app">
+         {/* here goes the header :) */}
+         <main>{/* routes :) */}</main>
+         <Footer>©2022 Digital Booking</Footer>
+      </div>
+   );
 }
 
 export default App;

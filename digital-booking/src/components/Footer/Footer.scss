@@ -24,10 +24,6 @@ footer {
       }
 
       svg {
-         aspect-ratio: 1/1;
-         flex: none;
-         width: var(--font-size-bigger);
-
          path {
             fill: var(--color-text-light);
          }
