@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.scss'
+import Button from './shared/Button/Button'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,9 +18,9 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <Button classList={'db-button-smaller db-button-primary'} action={() => setCount((count) => count + 1)} isDisabled={false}>
+          Count is {count}
+        </Button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
