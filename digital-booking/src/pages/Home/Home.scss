@@ -1,0 +1,59 @@
+section {
+   padding: 2rem .6rem;
+}
+
+.searcher {
+   background: var(--color-secondary);
+
+   h1 {
+      color: var(--color-text-light);
+      text-align: center;
+      margin-bottom: 2rem;
+   }
+
+   .inputs {
+      grid-template-columns: 1fr;
+
+      &>* {
+         width: 100%;
+      }
+
+      .inputField {
+         background: white;
+         border: none;
+         border-radius: var(--border-radius-small);
+         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+         color: gray;
+         font-family: 'Roboto Bold';
+         font-size: var(--font-size-medium);
+         height: 40px;
+         margin-bottom: .5rem;
+         padding-inline-start: 1rem;
+         box-sizing: border-box;
+         text-align: start;
+         width: 100%;
+
+         &:focus {
+            background: var(--color-quaternary);
+         }
+      }
+
+      .optionsContainer {
+         position: relative;
+         height: 0;
+
+         .placeOptions {
+            background: white;
+            border-radius: var(--border-radius-small);
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            width: 100%;
+         }
+      }
+
+      .closed {
+         overflow: hidden;
+      }
+   }
+}
