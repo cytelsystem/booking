@@ -1,6 +1,7 @@
 package digital.booking.controllers;
 
 import digital.booking.entities.Category;
+import digital.booking.exceptions.BadRequestException;
 import digital.booking.exceptions.NotFoundException;
 import digital.booking.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,27 +19,27 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<List<Category>> findAllCategories(){
-        return ResponseEntity.ok(categoryService.searchAll());
+        return ResponseEntity.ok(categoryService.searchAllCategories());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Category> findCategoryById(@PathVariable Long id) throws NotFoundException {
-        return ResponseEntity.ok(categoryService.searchById((id)));
+        return ResponseEntity.ok(categoryService.searchCategoryById((id)));
     }
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-        return ResponseEntity.ok(categoryService.save(category));
+    public ResponseEntity<?> createCategory(@RequestBody Category category) {
+        return ResponseEntity.ok("The category was created successfully.");
     }
 
     @PutMapping
-    public ResponseEntity<Category> updateCategory(@RequestBody Category category) {
-        return ResponseEntity.ok(categoryService.update(category));
+    public ResponseEntity<?> updateCategory(@RequestBody Category category) throws BadRequestException {
+        return ResponseEntity.ok("The category was updated successfully.");
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteCategory(@PathVariable Long id) {
-        return ResponseEntity.ok(categoryService.delete(id));
+    public ResponseEntity<?> deleteCategory(@PathVariable Long id) throws NotFoundException {
+        return ResponseEntity.ok("The category was deleted successfully.");
     }
 
 }
