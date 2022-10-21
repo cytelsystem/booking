@@ -1,4 +1,4 @@
-import SocialNetworks from '../SocialNetworks/SocialNetworks';
+import SocialNetworks from '../../shared/SocialNetworks/SocialNetworks';
 import './Footer.scss'
 
 const Footer = ({ children }) => {
