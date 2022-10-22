@@ -1,0 +1,46 @@
+.db-panel-options {
+    padding: 5px 0px;
+}
+
+.db-option {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--color-quaternary);
+    }
+
+    &-icon {
+        padding-right: 8px;
+
+        svg path {
+            fill: var(--color-tertiary);
+        }
+    }
+
+    &-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &-title {
+            font-family: 'Roboto Bold';
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-medium);
+            line-height: 19px;
+            color: var(--color-text-dark);
+        }
+
+        &-subtitle {
+            font-family: 'Roboto Bold';
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-small);
+            line-height: 16px;
+            color: var(--color-tertiary);
+        }
+    }
+
+    
+}
