@@ -1,8 +1,12 @@
-.card {
+.db-card {
     background-color: var(--color-text-light);
     border: 1px solid var(--border-color);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: var(--border-radius-big);
+
+    &-options {
+        border-radius: 0px 0px var(--border-radius-small) var(--border-radius-small);
+    }
 
     @media (max-width: 450px) {
         border-radius: 0px 0px var(--border-radius-medium) var(--border-radius-medium);

@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { getValidationErrors } from '../../utils/validationErrors';
 import './Input.scss';
 
-export default function Input({type, label, id, icon, placeholder, isDisabled, validations, setValue, errors}) {
+export default function Input({type, label, name, id, icon, placeholder, isDisabled, validations, setValue, errors}) {
     const [isFocus, setFocus] = useState(false);
     const [isInvalid, setInvalid] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -20,7 +19,7 @@ export default function Input({type, label, id, icon, placeholder, isDisabled, v
             setValue($event.target.value);
             setInvalid(false);
         } else {
-            setErrorMessage(errors.map((validationError) => validationError($event.target.value, label)).reduce((messages, error) => `${error}. ${messages} `, ''))
+            setErrorMessage(errors.map((validationError) => validationError($event.target.value, name)).reduce((messages, error) => `${error}. ${messages} `, ''))
             setInvalid(true);
         }
     }
@@ -30,9 +29,7 @@ export default function Input({type, label, id, icon, placeholder, isDisabled, v
         <div className="db-input">
             {label ? (<label className="db-input-label" htmlFor={id}>{label}</label>) : null}
             <div className={`db-input-wrapper ${isFocus ? 'focus': ''} ${isInvalid ? 'invalid' : ''} ${isDisabled ? 'disabled' : ''}`}>
-                <span className="db-input-icon" >
-                    {icon}
-                </span>
+                { icon ? <span className="db-input-icon" >{icon}</span> : null }       
                 <input key={id} id={id} type={type} placeholder={placeholder} disabled={isDisabled} onFocus={handleFocus} onBlur={handleBlur} onChange={handleChangeInput} />
             </div>
             {errorMessage && isInvalid ? (<div className="db-input-error">{errorMessage}</div>) : null}
