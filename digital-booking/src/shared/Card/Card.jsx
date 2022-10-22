@@ -1,8 +1,8 @@
 import './Card.scss';
 
-export default function Card({children}) {
+export default function Card({classList, children}) {
     return (
-        <div className="card">
+        <div className={`db-card ${classList}`}>
             {children}
         </div>
     )
