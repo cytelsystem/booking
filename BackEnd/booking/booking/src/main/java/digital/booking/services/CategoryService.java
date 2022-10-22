@@ -10,10 +10,8 @@ import org.apache.log4j.Logger;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoryService implements IService<Category> {
@@ -28,12 +26,7 @@ public class CategoryService implements IService<Category> {
     @Override
     public List<Category> searchAll() {
         logger.debug("Searching all categories...");
-        List<Category> categories = categoryRepository.findAll();
-        if (categories.isEmpty()){
-            throw new ServiceException("There are no categories to list.");
-        } else {
-            return categories;
-        }
+        return categoryRepository.findAll();
     }
 
     @Override
@@ -44,9 +37,15 @@ public class CategoryService implements IService<Category> {
     }
 
     @Override
-    public Category create(Category category) {
-        logger.debug("Creating new category...");
-        return categoryRepository.save(category);
+    public Category create(Category category) throws BadRequestException {
+        if (category == null){
+            logger.error("The data entered is null.");
+            throw new BadRequestException("The category is null.");
+        } else{
+            logger.debug("Creating new category...");
+            logger.info("The category was created successfully.");
+            return categoryRepository.save(category);
+        }
     }
 
     @Override
@@ -56,21 +55,16 @@ public class CategoryService implements IService<Category> {
                         "was not found."));
         logger.debug("Updating category...");
         categoryRepository.save(categoryFound);
+        logger.info("The category was updated successfully.");
         return categoryFound;
     }
 
-    private Category save(Category category) {
-        logger.debug("Saving category...");
-        return categoryRepository.save(category);
-    }
-
     @Override
-    public Boolean delete(Long id) throws NotFoundException {
+    public void delete(Long id) throws NotFoundException {
         Category category = categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("The " +
                 "category with the id: " + id + " was not found."));
         logger.debug("Deleting category...");
         categoryRepository.delete(category);
-        return null;
     }
 }
 
