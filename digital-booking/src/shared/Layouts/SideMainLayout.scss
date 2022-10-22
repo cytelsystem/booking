@@ -1,0 +1,23 @@
+.db-side-main-layout {
+    display: flex;
+    align-items: flex-start;
+    .side {
+        width: 50%;
+    }
+
+    .main {
+        width: 50%;
+    }
+
+    @media (max-width: 450px) {
+        flex-direction: column;
+        
+        .side {
+            width: 100%;
+        }
+    
+        .main {
+            width: 100%;
+        }
+    }
+}
