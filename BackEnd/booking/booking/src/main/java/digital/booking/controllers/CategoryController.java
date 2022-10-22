@@ -28,7 +28,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) throws BadRequestException {
         return ResponseEntity.ok(categoryService.create(category));
     }
 
@@ -38,8 +38,9 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteCategory(@PathVariable Long id) throws NotFoundException {
-        return ResponseEntity.ok(categoryService.delete(id));
+    public ResponseEntity<String> deleteCategory(@PathVariable Long id) throws NotFoundException {
+        categoryService.delete(id);
+        return ResponseEntity.ok("Category deleted ID: " + id);
     }
 
 }
