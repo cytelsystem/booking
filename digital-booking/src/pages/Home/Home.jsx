@@ -1,7 +1,12 @@
-import { useCallback, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Button from './../../shared/Button/Button';
 import PlaceSuggestion from './components/PlaceSuggestion/PlaceSuggestion';
 import './Home.scss';
+
+import Input from '../../shared/Input/Input';
+import { getValidations } from './../../utils/formValidations';
+import { getValidationErrors } from './../../utils/validationErrors';
+import FacebookIcon from '../../shared/Icons/FacebookIcon';
 
 const places = [
    {
@@ -49,6 +54,16 @@ const Home = () => {
          <section className="searcher">
             <h1>Busca ofertas en hoteles, casas y mucho mas</h1>
             <div className="inputs">
+               <Input
+                  type={'text'}
+                  placeholder={'Escribe tu nombre'}
+                  label={'Nombre'}
+                  icon={<FacebookIcon />}
+                  isDisabled={false}
+                  validations={getValidations('text', true)}
+                  errors={getValidationErrors('text', true)}
+                  // setValue={setInputValue}
+               />
                <input
                   onFocus={() => buttonsContainer.current.classList.remove('closed')}
                   onBlur={() => buttonsContainer.current.classList.add('closed')}
