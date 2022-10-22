@@ -8,7 +8,7 @@ import java.util.List;
 public interface IService<T> {
     List<T> searchAll();
     T searchById(Long id) throws NotFoundException;
-    T create(T entity);
+    T create(T entity) throws BadRequestException;
     T update(T entity) throws BadRequestException;
-    Boolean delete(Long id) throws NotFoundException;
+    void delete(Long id) throws NotFoundException;
 }
