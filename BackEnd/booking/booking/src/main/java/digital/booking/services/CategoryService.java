@@ -19,17 +19,14 @@ import java.util.Optional;
 public class CategoryService implements IService<Category> {
     private final Logger logger = Logger.getLogger(CategoryService.class);
     @Autowired
-    private final CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @Autowired
-    ObjectMapper mapper;
+    private ObjectMapper mapper;
 
-    public CategoryService(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
 
     @Override
-    public List<Category> searchAllCategories() throws ServiceException {
+    public List<Category> searchAll() {
         logger.debug("Searching all categories...");
         List<Category> categories = categoryRepository.findAll();
         if (categories.isEmpty()){
@@ -40,44 +37,40 @@ public class CategoryService implements IService<Category> {
     }
 
     @Override
-    public Category searchCategoryById(Long id) throws NotFoundException {
+    public Category searchById(Long id) throws NotFoundException {
         logger.debug("Searching category with id: " + id);
-        Optional<Category> category = categoryRepository.findById(id);
-        if(category.isPresent()){
-            return mapper.convertValue(category, Category.class);
-        } else {
-            throw new NotFoundException("The category with id: "+ id + " does not exists.");
-        }
+        return categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("The " +
+                "category with the id: " + id + " was not found."));
     }
 
     @Override
-    public void createCategory(Category category) {
+    public Category create(Category category) {
         logger.debug("Creating new category...");
-        categoryRepository.save(category);
+        return categoryRepository.save(category);
     }
 
     @Override
-    public void updateCategory(Category category) throws BadRequestException {
-        if (category.getId() == null) {
-            throw new BadRequestException("The category you are trying to modify does not exist.");
-        } else {
-            logger.debug("Updating category...");
-            saveCategory(category);
-        }
+    public Category update(Category category) throws BadRequestException {
+        Category categoryFound = categoryRepository.findById(category.getId())
+                .orElseThrow(() -> new BadRequestException("The category with id " + category.getId() +
+                        "was not found."));
+        logger.debug("Updating category...");
+        categoryRepository.save(categoryFound);
+        return categoryFound;
     }
 
-    private void saveCategory(Category category) {
+    private Category save(Category category) {
         logger.debug("Saving category...");
-        categoryRepository.save(category);
+        return categoryRepository.save(category);
     }
 
     @Override
-    public void deleteCategory(Long id) throws NotFoundException {
-        if (categoryRepository.findById(id).isEmpty()){
-            throw new NotFoundException("The category with id: "+ id + " does not exists.");
-        } else {
-            logger.debug("Deleting category with id: " + id);
-            categoryRepository.delete(categoryRepository.findById(id).get());
-        }
+    public Boolean delete(Long id) throws NotFoundException {
+        Category category = categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("The " +
+                "category with the id: " + id + " was not found."));
+        logger.debug("Deleting category...");
+        categoryRepository.delete(category);
+        return null;
     }
 }
+
