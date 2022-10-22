@@ -16,7 +16,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "category_seq")
     private Long id;
 
-
     @Column
     private String title;
 
