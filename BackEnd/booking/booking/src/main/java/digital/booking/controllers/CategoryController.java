@@ -32,9 +32,9 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.create(category));
     }
 
-    @PutMapping
-    public ResponseEntity<Category> updateCategory(@RequestBody Category category) throws BadRequestException {
-        return ResponseEntity.ok(categoryService.update(category));
+    @PutMapping("/{id}")
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) throws NotFoundException {
+        return ResponseEntity.ok(categoryService.update(category, id));
     }
 
     @DeleteMapping("/{id}")

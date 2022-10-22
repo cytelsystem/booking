@@ -49,14 +49,19 @@ public class CategoryService implements IService<Category> {
     }
 
     @Override
-    public Category update(Category category) throws BadRequestException {
-        Category categoryFound = categoryRepository.findById(category.getId())
-                .orElseThrow(() -> new BadRequestException("The category with id " + category.getId() +
+    public Category update(Category category, Long id) throws NotFoundException {
+        Category existingCategory = categoryRepository.findById(category.getId())
+                .orElseThrow(() -> new NotFoundException("The category with id " + category.getId() +
                         "was not found."));
+
         logger.debug("Updating category...");
-        categoryRepository.save(categoryFound);
+        existingCategory.setTitle(category.getTitle());
+        existingCategory.setDescription(category.getDescription());
+        existingCategory.setImageURL(category.getImageURL());
+
+        categoryRepository.save(existingCategory);
         logger.info("The category was updated successfully.");
-        return categoryFound;
+        return existingCategory;
     }
 
     @Override
