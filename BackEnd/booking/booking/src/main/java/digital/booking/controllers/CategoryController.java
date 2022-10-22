@@ -19,27 +19,27 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<List<Category>> findAllCategories(){
-        return ResponseEntity.ok(categoryService.searchAllCategories());
+        return ResponseEntity.ok(categoryService.searchAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Category> findCategoryById(@PathVariable Long id) throws NotFoundException {
-        return ResponseEntity.ok(categoryService.searchCategoryById((id)));
+        return ResponseEntity.ok(categoryService.searchById((id)));
     }
 
     @PostMapping
-    public ResponseEntity<?> createCategory(@RequestBody Category category) {
-        return ResponseEntity.ok("The category was created successfully.");
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+        return ResponseEntity.ok(categoryService.create(category));
     }
 
     @PutMapping
-    public ResponseEntity<?> updateCategory(@RequestBody Category category) throws BadRequestException {
-        return ResponseEntity.ok("The category was updated successfully.");
+    public ResponseEntity<Category> updateCategory(@RequestBody Category category) throws BadRequestException {
+        return ResponseEntity.ok(categoryService.update(category));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCategory(@PathVariable Long id) throws NotFoundException {
-        return ResponseEntity.ok("The category was deleted successfully.");
+    public ResponseEntity<Boolean> deleteCategory(@PathVariable Long id) throws NotFoundException {
+        return ResponseEntity.ok(categoryService.delete(id));
     }
 
 }
