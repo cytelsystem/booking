@@ -9,6 +9,7 @@ import Input from './shared/Input/Input';
 import Typehead from './shared/Input/Typehead';
 import { getValidations } from './utils/formValidations';
 import { getValidationErrors } from './utils/validationErrors';
+import Header from './components/Header/Header';
 
 var options = [
    {
@@ -58,7 +59,7 @@ function App() {
 
    return (
       <div id="app">
-         {/* here goes the header :) */}
+         <Header/>
          <Card>
             Esto es una card
          </Card>

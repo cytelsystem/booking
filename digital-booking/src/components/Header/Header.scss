@@ -1,0 +1,32 @@
+Header {
+
+    .headerContainer {
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        position: sticky;
+        width: 100vw;
+    }
+
+    .headerItems{
+        display: flex;
+        align-items: flex-end;
+        margin-right: 20px;
+    }
+
+.logo{
+    margin-top: 10px;
+}
+    .db-button-primary-outlined{
+        margin-left: 10px;
+    }
+
+    @media (min-width: 768px) {
+        display: flex;
+        gap: 1rem
+    }
+
+
+}
