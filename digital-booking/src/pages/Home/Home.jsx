@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import './Home.scss';
 import LocationIcon from '../../shared/Icons/locationIcon';
-import WifiIcon from '../../shared/Icons/WifiIcon';
-import PoolIcon from '../../shared/Icons/PoolIcon';
 import Categories from './components/Categories/Categories';
 import Recomendations from './components/Recomendations/Recomendations';
 import Searcher from './components/Searcher/Searcher';
+import gsap from 'gsap';
 
 var options = [
    {
@@ -58,12 +57,34 @@ const Home = () => {
    const [selectedPlace, setPlace] = useState(null);
    const [selectedDate, setDate] = useState(null);
 
+   useEffect(() => {
+      const categoriesAnimations = gsap.from('#home .categories .cards > a', {
+         duration: 0.5,
+         opacity: 0,
+         yPercent: 20,
+         stagger: 0.1,
+         ease: 'power2.out',
+      });
+
+      const recomendationsAnimations = gsap.from('#home .recommendations .cards .db-card', {
+         duration: 0.5,
+         opacity: 0,
+         scale: 0.6,
+         stagger: 0.2,
+         ease: 'power2.out',
+      });
+      return () => {
+         recomendationsAnimations.revert();
+         categoriesAnimations.revert();
+      };
+   }, []);
+
    return (
-      <>
+      <div id="home">
          <Searcher setDate={setDate} setPlace={setPlace} typeHeadOptions={options} />
          <Categories categories={categories} />
          <Recomendations products={products} />
-      </>
+      </div>
    );
 };
 
