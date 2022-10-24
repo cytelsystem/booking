@@ -10,7 +10,7 @@ var options = [
    {
       id: 'PTO',
       icon: <LocationIcon />,
-      title: 'Cartagena - Nariño',
+      title: 'Pasto - Nariño',
       subtitle: 'Colombia',
    },
    {

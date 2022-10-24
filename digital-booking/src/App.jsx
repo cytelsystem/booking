@@ -44,22 +44,6 @@ function App() {
 
    return (
       <div id="app">
-         {/* <Card>Esto es una card</Card>
-         <Input
-            type={'date'}
-            placeholder={'Escribe tu nombre'}
-            label={'Nombre'}
-            icon={<FacebookIcon />}
-            isDisabled={false}
-            validations={getValidations('text', true)}
-            errors={getValidationErrors('text', true)}
-            setValue={setInputValue}
-            name={'Nombre'}
-         />
-         <div style={{ padding: '10px', display: 'flex', justifyContent: 'space-evenly' }}>
-            <ProductCard  product={product} />
-            <ProductCard product={product} />
-         </div> */}
          <main>
             <RouterProvider router={router} />
          </main>
