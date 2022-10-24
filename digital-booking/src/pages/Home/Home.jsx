@@ -1,96 +1,68 @@
-import { useRef, useState } from 'react';
-import Button from './../../shared/Button/Button';
-import PlaceSuggestion from './components/PlaceSuggestion/PlaceSuggestion';
+import { useEffect, useState } from 'react';
 import './Home.scss';
+import LocationIcon from '../../shared/Icons/locationIcon';
+import WifiIcon from '../../shared/Icons/WifiIcon';
+import PoolIcon from '../../shared/Icons/PoolIcon';
+import Categories from './components/Categories/Categories';
+import Recomendations from './components/Recomendations/Recomendations';
+import Searcher from './components/Searcher/Searcher';
 
-import Input from '../../shared/Input/Input';
-import { getValidations } from './../../utils/formValidations';
-import { getValidationErrors } from './../../utils/validationErrors';
-import FacebookIcon from '../../shared/Icons/FacebookIcon';
-
-const places = [
+var options = [
    {
-      city: 'San Carlos de Bariloche',
-      country: 'Argentina',
+      id: 'PTO',
+      icon: <LocationIcon />,
+      title: 'Cartagena - Nariño',
+      subtitle: 'Colombia',
    },
    {
-      city: 'Buenos Aires',
-      country: 'Argentina',
+      id: 'CTA',
+      icon: <LocationIcon />,
+      title: 'Cartagena de Indias - Bolivar',
+      subtitle: 'Colombia',
    },
    {
-      city: 'Mendoza',
-      country: 'Argentina',
-   },
-   {
-      city: 'Cordoba',
-      country: 'Argentina',
+      id: 'MDE',
+      icon: <LocationIcon />,
+      title: 'Medellin - Antioquia',
+      subtitle: 'Colombia',
    },
 ];
 
+const product = {
+   image: {
+      url: 'https://construccionesprisma.com.co/images/apartment_photos/22_41_pradoalto97.5m201.jpg',
+      productName: 'apto1',
+   },
+   info: {
+      title: 'Title',
+      category: 'Departamentos',
+      points: 8,
+      textRate: 'Muy bueno',
+      distance: 'A 900 m del centro',
+      amenities: ['wifi', 'pool'],
+      description:
+         'En el corazón de San Telmo, disfruta de un albergue inspirado en las pasiones de Buenos Aires.',
+   },
+};
+
+const category = {
+   name: 'Hoteles',
+   quantity: 807105,
+   image: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+};
+
+const categories = [category, category, category, category];
+const products = [product, product, product, product];
+
 const Home = () => {
-   const [placesShown, setPlaces] = useState(places);
-   const [selectedPlace, setSelect] = useState('¿A donde vamos?');
-
-   const buttonsContainer = useRef(null);
-
-   const handleClick = () => {
-      console.log(val);
-   };
-
-   const handleInputChange = e => {
-      setPlaces(
-         places.filter(place => {
-            const string = e.target.value.toLowerCase();
-            return (
-               place.city.toLowerCase().includes(string) ||
-               place.country.toLowerCase().includes(string)
-            );
-         })
-      );
-   };
+   const [selectedPlace, setPlace] = useState(null);
+   const [selectedDate, setDate] = useState(null);
 
    return (
       <>
-         <section className="searcher">
-            <h1>Busca ofertas en hoteles, casas y mucho mas</h1>
-            <div className="inputs">
-               <Input
-                  type={'text'}
-                  placeholder={'Escribe tu nombre'}
-                  label={'Nombre'}
-                  icon={<FacebookIcon />}
-                  isDisabled={false}
-                  validations={getValidations('text', true)}
-                  errors={getValidationErrors('text', true)}
-                  // setValue={setInputValue}
-               />
-               <input
-                  onFocus={() => buttonsContainer.current.classList.remove('closed')}
-                  onBlur={() => buttonsContainer.current.classList.add('closed')}
-                  onChange={handleInputChange}
-                  type="text"
-                  className="input inputField"
-                  placeholder={selectedPlace}
-               />
-               <div ref={buttonsContainer} className="optionsContainer closed">
-                  <div className="placeOptions">
-                     {placesShown.map((place, i) => (
-                        <PlaceSuggestion key={i} place={place} setPlace={handleClick} />
-                     ))}
-                  </div>
-               </div>
-               <Button classList={'inputField'}>Check in - Check out</Button>
-               <Button classList={'searchButton db-button-primary'}>Buscar</Button>
-            </div>
-         </section>
-         <section className="types">
-            <h2>Buscar por tipo de alojamiento</h2>
-            <article className="typeCards"></article>
-         </section>
-         <section className="recomendations">
-            <h2>Recomendaciones</h2>
-            <article className="typeCards"></article>
-         </section>
+         <Searcher setDate={setDate} setPlace={setPlace} typeHeadOptions={options} />
+         <Categories categories={categories} />
+         <Recomendations products={products} />
       </>
    );
 };
