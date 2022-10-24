@@ -6,9 +6,9 @@ footer {
    color: var(--color-text-light);
    display: grid;
    grid-template-columns: 1fr 1fr;
-   padding: var(--font-size-medium) 2rem;
-   position: fixed;
-   width: 100vw;
+   padding: .6rem 2rem;
+   position: sticky;
+   width: 100%;
 
    .leftSide {
       justify-self: start;

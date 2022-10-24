@@ -1,0 +1,19 @@
+.db-card {
+   width: 100%;
+
+   .categoryImage {
+      aspect-ratio: 3/2;
+      border-radius: var(--border-radius-big) var(--border-radius-big) 0 0;
+      object-fit: cover;
+      width: 100%;
+   }
+
+   .content {
+      padding: .6rem;
+
+      h3 {
+         font-size: 1.2rem;
+         margin-bottom: .2rem;
+      }
+   }
+}
