@@ -1,46 +1,54 @@
 .db-panel-options {
-    padding: 5px 0px;
+   padding: 5px 0px;
+   position: absolute;
+   width: 100%;
 }
 
 .db-option {
-    display: flex;
-    align-items: center;
-    padding: 5px;
+   align-items: center;
+   display: flex;
+   border-bottom: 1px solid var(--color-primary);
+   padding: 5px;
+   background: white;
 
-    &:hover {
-        cursor: pointer;
-        background-color: var(--color-quaternary);
-    }
+   &:last-child {
+      border: none;
+   }
 
-    &-icon {
-        padding-right: 8px;
+   &:hover {
+      cursor: pointer;
+      background-color: var(--color-quaternary);
+   }
 
-        svg path {
-            fill: var(--color-tertiary);
-        }
-    }
+   &-icon {
+      padding-right: 8px;
 
-    &-item {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+      svg path {
+         fill: var(--color-tertiary);
+      }
+   }
 
-        &-title {
-            font-family: 'Roboto Bold';
-            font-weight: var(--font-weight-bold);
-            font-size: var(--font-size-medium);
-            line-height: 19px;
-            color: var(--color-text-dark);
-        }
+   &-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
 
-        &-subtitle {
-            font-family: 'Roboto Bold';
-            font-weight: var(--font-weight-bold);
-            font-size: var(--font-size-small);
-            line-height: 16px;
-            color: var(--color-tertiary);
-        }
-    }
+      &-title {
+         font-family: 'Roboto Bold';
+         font-weight: var(--font-weight-bold);
+         font-size: var(--font-size-medium);
+         line-height: 19px;
+         color: var(--color-text-dark);
+      }
 
-    
+      &-subtitle {
+         font-family: 'Roboto Bold';
+         font-weight: var(--font-weight-bold);
+         font-size: var(--font-size-small);
+         line-height: 16px;
+         color: var(--color-tertiary);
+      }
+   }
+
+
 }
