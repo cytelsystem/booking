@@ -1,6 +1,7 @@
 package digital.booking.controllers;
 
 import digital.booking.entities.Category;
+import digital.booking.exceptions.BadRequestException;
 import digital.booking.exceptions.NotFoundException;
 import digital.booking.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,18 +28,19 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-        return ResponseEntity.ok(categoryService.save(category));
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) throws BadRequestException {
+        return ResponseEntity.ok(categoryService.create(category));
     }
 
     @PutMapping
-    public ResponseEntity<Category> updateCategory(@RequestBody Category category) {
+    public ResponseEntity<Category> updateCategory(@RequestBody Category category) throws BadRequestException {
         return ResponseEntity.ok(categoryService.update(category));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteCategory(@PathVariable Long id) {
-        return ResponseEntity.ok(categoryService.delete(id));
+    public ResponseEntity<String> deleteCategory(@PathVariable Long id) throws NotFoundException {
+        categoryService.delete(id);
+        return ResponseEntity.ok("Category deleted ID: " + id);
     }
 
 }
