@@ -1,6 +1,6 @@
 package digital.booking.controllers;
 
-import digital.booking.entities.Category;
+import digital.booking.DTO.CategoryDTO;
 import digital.booking.exceptions.BadRequestException;
 import digital.booking.exceptions.NotFoundException;
 import digital.booking.services.CategoryService;
@@ -18,22 +18,22 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAllCategories(){
+    public ResponseEntity<List<CategoryDTO>> findAllCategories(){
         return ResponseEntity.ok(categoryService.searchAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> findCategoryById(@PathVariable Long id) throws NotFoundException {
+    public ResponseEntity<CategoryDTO> findCategoryById(@PathVariable Long id) throws NotFoundException {
         return ResponseEntity.ok(categoryService.searchById((id)));
     }
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) throws BadRequestException {
+    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO category) throws BadRequestException {
         return ResponseEntity.ok(categoryService.create(category));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) throws NotFoundException {
+    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Long id, @RequestBody CategoryDTO category) throws NotFoundException {
         return ResponseEntity.ok(categoryService.update(category, id));
     }
 

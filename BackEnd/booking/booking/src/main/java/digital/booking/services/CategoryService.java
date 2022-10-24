@@ -1,6 +1,7 @@
 package digital.booking.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import digital.booking.DTO.CategoryDTO;
 import digital.booking.entities.Category;
 import digital.booking.exceptions.BadRequestException;
 import digital.booking.exceptions.NotFoundException;
@@ -11,10 +12,12 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class CategoryService implements IService<Category> {
+public class CategoryService implements IService<CategoryDTO> {
     private final Logger logger = Logger.getLogger(CategoryService.class);
     @Autowired
     private CategoryRepository categoryRepository;
@@ -24,32 +27,43 @@ public class CategoryService implements IService<Category> {
 
 
     @Override
-    public List<Category> searchAll() {
+    public List<CategoryDTO> searchAll() {
+        List<Category> categories = categoryRepository.findAll();
         logger.debug("Searching all categories...");
-        return categoryRepository.findAll();
+
+        List<CategoryDTO> categoriesDTO = new ArrayList<>();
+        for (Category category : categories){
+            categoriesDTO.add(mapper.convertValue(category,CategoryDTO.class));
+        }
+
+        logger.info("Listing all categories...");
+        return categoriesDTO;
     }
 
     @Override
-    public Category searchById(Long id) throws NotFoundException {
+    public CategoryDTO searchById(Long id) throws NotFoundException {
         logger.debug("Searching category with id: " + id);
-        return categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("The " +
+        Category categoryFounded = categoryRepository.findById(id).orElseThrow(() -> new NotFoundException("The " +
                 "category with the id: " + id + " was not found."));
+        return mapper.convertValue(categoryFounded, CategoryDTO.class);
     }
 
     @Override
-    public Category create(Category category) throws BadRequestException {
-        if (category == null){
-            logger.error("The data entered is null.");
-            throw new BadRequestException("The category is null.");
+    public CategoryDTO create(CategoryDTO category) throws BadRequestException {
+        if (category.getTitle()==null || category.getDescription()==null || category.getImageURL()==null){
+            logger.error("The data entered has null values.");
+            throw new BadRequestException("The category has null values.");
         } else{
             logger.debug("Creating new category...");
+            Category categoryCreated = mapper.convertValue(category, Category.class);
+            categoryRepository.save(categoryCreated);
             logger.info("The category was created successfully.");
-            return categoryRepository.save(category);
+            return mapper.convertValue(categoryCreated, CategoryDTO.class);
         }
     }
 
     @Override
-    public Category update(Category category, Long id) throws NotFoundException {
+    public CategoryDTO update(CategoryDTO category, Long id) throws NotFoundException {
         Category existingCategory = categoryRepository.findById(category.getId())
                 .orElseThrow(() -> new NotFoundException("The category with id " + category.getId() +
                         "was not found."));
@@ -61,7 +75,7 @@ public class CategoryService implements IService<Category> {
 
         categoryRepository.save(existingCategory);
         logger.info("The category was updated successfully.");
-        return existingCategory;
+        return mapper.convertValue(existingCategory, CategoryDTO.class);
     }
 
     @Override
