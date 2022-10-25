@@ -1,5 +1,8 @@
 .db-product {
    &-image {
+      align-items: center;
+      display: flex;
+
       img {
          border-radius: var(--border-radius-big);
          width: 100%;
@@ -97,11 +100,5 @@
       font-size: var(--font-size-small);
       line-height: 16px;
       margin: .8rem 0;
-   }
-}
-
-@media (max-width: 450px) {
-   .db-button {
-      width: 362px;
    }
 }

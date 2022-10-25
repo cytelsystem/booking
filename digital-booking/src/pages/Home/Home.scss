@@ -44,7 +44,7 @@ section {
 }
 
 .categories,
-.recommendations {
+.db-recommendations {
    .cards {
       display: grid;
       gap: 1rem;
@@ -67,10 +67,11 @@ section {
 
 }
 
-.recommendations {
+.db-recommendations {
    padding: var(--gap-x) var(--gap-y) 0;
    background: var(--color-quaternary);
-
+   margin-bottom: 50px;
+   
    .cards {
       @media screen and (min-width: 1280px) {
          grid-template-columns: 1fr 1fr;

@@ -38,77 +38,75 @@ const Register = () => {
    }
 
    return (
-      <div>
-         <MainCenterLayout>
-            <div className="db-register">
-               <h1 className="db-form-title">Crear cuenta</h1>
-               <div className="db-form-row">
-                  <Input 
-                     id={'name'}
-                     placeholder={''}
-                     type={'text'}
-                     label={'Nombre'}
-                     errors={getValidationErrors('text', false)}
-                     setValue={registerForm.name.state[1]}
-                     name={'name'}
-                     setInputValidation={registerForm.name.isValid[1]}
-                  />
-                  <Input 
-                     id={'lastName'}
-                     placeholder={''}
-                     type={'text'}
-                     label={'Apellido'}
-                     errors={getValidationErrors('text', false)}
-                     setValue={registerForm.lastName.state[1]}
-                     name={'lastName'}
-                     setInputValidation={registerForm.lastName.isValid[1]}
-                  />
-               </div>
+      <MainCenterLayout>
+         <div className="db-register">
+            <h1 className="db-form-title">Crear cuenta</h1>
+            <div className="db-form-row">
                <Input 
-                  id={'email'}
+                  id={'name'}
                   placeholder={''}
-                  type={'email'}
-                  label={'Correo Electronico'}
-                  errors={getValidationErrors('email', true)}
-                  setValue={registerForm.email.state[1]}
-                  name={'email'}
-                  setInputValidation={registerForm.email.isValid[1]}
+                  type={'text'}
+                  label={'Nombre'}
+                  errors={getValidationErrors('text', false)}
+                  setValue={registerForm.name.state[1]}
+                  name={'name'}
+                  setInputValidation={registerForm.name.isValid[1]}
                />
                <Input 
-                  id={'password'}
+                  id={'lastName'}
                   placeholder={''}
-                  type={'password'}
-                  label={'Contraseña'}
-                  errors={getValidationErrors('password', true)}
-                  setValue={registerForm.password.state[1]}
-                  name={'password'}
-                  setInputValidation={registerForm.password.isValid[1]}
+                  type={'text'}
+                  label={'Apellido'}
+                  errors={getValidationErrors('text', false)}
+                  setValue={registerForm.lastName.state[1]}
+                  name={'lastName'}
+                  setInputValidation={registerForm.lastName.isValid[1]}
                />
-               <Input 
-                  id={'passwordConfirm'}
-                  placeholder={''}
-                  type={'password'}
-                  label={'Confirmar contraseña'}
-                  errors={[...getValidationErrors('password', true), ...passwordConfirmValidation(registerForm.password.state[0])]}
-                  setValue={registerForm.passwordConfirm.state[1]}
-                  name={'passwordConfirm'}
-                  setInputValidation={registerForm.passwordConfirm.isValid[1]}
-               />
-
-               <Button classList={'db-button-primary db-button-small'} action={registerNewUser} isDisabled={!formStateValidation(registerForm)}>
-                  {isLoading ? <Spinner /> : null} 
-                  Crear cuenta
-                  
-               </Button>
-               <div className="db-form-footer">
-                  <span>¿Ya tienes una cuenta? </span>
-                  <Link to={'/login'}>
-                     <span>Iniciar Sesión</span>
-                  </Link>
-               </div>
             </div>
-         </MainCenterLayout>
-      </div>
+            <Input 
+               id={'email'}
+               placeholder={''}
+               type={'email'}
+               label={'Correo Electronico'}
+               errors={getValidationErrors('email', true)}
+               setValue={registerForm.email.state[1]}
+               name={'email'}
+               setInputValidation={registerForm.email.isValid[1]}
+            />
+            <Input 
+               id={'password'}
+               placeholder={''}
+               type={'password'}
+               label={'Contraseña'}
+               errors={getValidationErrors('password', true)}
+               setValue={registerForm.password.state[1]}
+               name={'password'}
+               setInputValidation={registerForm.password.isValid[1]}
+            />
+            <Input 
+               id={'passwordConfirm'}
+               placeholder={''}
+               type={'password'}
+               label={'Confirmar contraseña'}
+               errors={[...getValidationErrors('password', true), ...passwordConfirmValidation(registerForm.password.state[0])]}
+               setValue={registerForm.passwordConfirm.state[1]}
+               name={'passwordConfirm'}
+               setInputValidation={registerForm.passwordConfirm.isValid[1]}
+            />
+
+            <Button classList={'db-button-primary db-button-small'} action={registerNewUser} isDisabled={!formStateValidation(registerForm)}>
+               {isLoading ? <Spinner /> : null} 
+               Crear cuenta
+               
+            </Button>
+            <div className="db-form-footer">
+               <span>¿Ya tienes una cuenta? </span>
+               <Link to={'/login'}>
+                  <span>Iniciar Sesión</span>
+               </Link>
+            </div>
+         </div>
+      </MainCenterLayout>
    );
 }
 

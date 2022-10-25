@@ -37,6 +37,10 @@
     .db-button {
         margin-top: 50px;
         margin-bottom: 18px;
+
+        @media (max-width: 450px) {
+            width: 206px;
+        }
     }
 
     .db-form-title {
