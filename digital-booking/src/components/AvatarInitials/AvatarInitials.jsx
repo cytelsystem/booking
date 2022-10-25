@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 
+
 const AvatarInitials = ({ name }) => {
     const [initials, setInitials] = useState("");
     useEffect(() => {

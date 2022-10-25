@@ -3,10 +3,12 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 
 
-export default function LetterAvatars() {
+export default function LetterAvatars({user}) {
   return (
     <Stack direction="row" spacing={2}>
-      <Avatar>H</Avatar>
+      <Avatar>
+      {user}
+      </Avatar>
     </Stack>
   );
 }
