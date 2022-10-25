@@ -10,11 +10,11 @@ export default function Typehead({
    icon,
    placeholder,
    isDisabled,
-   validations,
    setValue,
    errors,
    items,
    maxItemsLength,
+   setInputValidation
 }) {
    const typeheadRef = useRef();
    const [isFocus, setFocus] = useState(false);
@@ -50,20 +50,19 @@ export default function Typehead({
    };
 
    const handleChange = option => {
-      const isValid =
-         validations.every(validation => validation(option)) &&
-         items.some(item => item.id === option.id);
-      if (isValid) {
+      const error = 
+       errors
+      .map(validationError => validationError(option.id, name))
+      .reduce((messages, error) => `${error ? error + '.': ''} ${messages} `, '')
+      if (items.some(item => item.id === option.id) && !Boolean(error.trim())) {
          setValue(option.id);
          setInputValue(option.title);
          setInvalid(false);
+         setInputValidation(true)
       } else {
-         setErrorMessage(
-            errors
-               .map(validationError => validationError(option, name))
-               .reduce((messages, error) => `${error}. ${messages} `, '')
-         );
+         setErrorMessage(error);
          setInvalid(true);
+         setInputValidation(false)
       }
       setSearching(false);
    };

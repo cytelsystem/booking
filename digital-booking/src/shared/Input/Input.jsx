@@ -3,7 +3,7 @@ import DatePicker from 'react-multi-date-picker';
 import DatePanel from 'react-multi-date-picker/plugins/date_panel';
 import './Input.scss';
 
-export default function InputExper({
+export default function Input({
    type,
    label,
    name,
@@ -11,9 +11,9 @@ export default function InputExper({
    icon,
    placeholder,
    isDisabled,
-   validations,
    setValue,
    errors,
+   setInputValidation
 }) {
    const [isFocus, setFocus] = useState(false);
    const [isInvalid, setInvalid] = useState(false);
@@ -31,22 +31,22 @@ export default function InputExper({
    };
 
    const handleChangeInput = $event => {
-      const isValid = validations.every(validation => validation($event.target.value));
-      if (isValid) {
+      const error = errors
+      .map(validationError => validationError($event.target.value, name))
+      .reduce((messages, error) => `${error ? error + '.': ''} ${messages} `, '')
+      if (!Boolean(error.trim())) {
          setValue($event.target.value);
          setInvalid(false);
+         setInputValidation(true);
       } else {
-         setErrorMessage(
-            errors
-               .map(validationError => validationError($event.target.value, name))
-               .reduce((messages, error) => `${error}. ${messages} `, '')
-         );
+         setErrorMessage(error);
          setInvalid(true);
+         setInputValidation(false);
       }
    };
 
    useEffect(() => {
-      const input = inputRef.current.firstChild;
+      const input = inputRef && inputRef.current && inputRef.current.firstChild;
       if (input) {
          input.addEventListener('focus', handleFocus);
          input.addEventListener('blur', handleBlur);
