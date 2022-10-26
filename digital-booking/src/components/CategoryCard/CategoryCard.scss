@@ -1,14 +1,14 @@
-.db-card {
+.db-card-category {
    width: 100%;
 
-   .categoryImage {
+   &-image {
       aspect-ratio: 3/2;
       border-radius: var(--border-radius-big) var(--border-radius-big) 0 0;
       object-fit: cover;
       width: 100%;
    }
 
-   .content {
+   &-content {
       padding: .6rem;
 
       h3 {
