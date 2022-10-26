@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -19,21 +21,16 @@ public class CategoryServiceTest {
 
 
     @Test
-    public void testCreate() {
-        try{
-            categoryService.create(categoryDTO);
+    public void testSearchAll(){
 
-            CategoryDTO categoryTest = categoryService.searchById(1L);
-            assertNotNull(categoryTest,"The category is null");
-            assertEquals(categoryDTO.getTitle(), categoryTest.getTitle(), "Titles don't match.");
-            assertEquals(categoryDTO.getDescription(), categoryTest.getDescription(), "Descriptions don't match.");
-            assertEquals(categoryDTO.getImageURL(), categoryTest.getImageURL(), "ImageURLs don't match.");
+        try {
+            List<CategoryDTO> categoriesList = categoryService.searchAll();
+            assertTrue(categoriesList.size() > 0,"There are no categories to list.");
 
-        } catch (BadRequestException | NotFoundException e){
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
-
     @Test
     public void testSearchById(){
         try {
@@ -45,6 +42,52 @@ public class CategoryServiceTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testCreate() {
+        try{
+            categoryService.create(categoryDTO);
+
+            CategoryDTO categoryCreated = categoryService.searchById(1L);
+            assertNotNull(categoryCreated,"The category is null");
+            assertEquals(categoryDTO.getTitle(), categoryCreated.getTitle(), "Titles don't match.");
+            assertEquals(categoryDTO.getDescription(), categoryCreated.getDescription(), "Descriptions don't match.");
+            assertEquals(categoryDTO.getImageURL(), categoryCreated.getImageURL(), "ImageURLs don't match.");
+
+        } catch (BadRequestException | NotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testUpdate() {
+        try{
+            categoryDTO.setTitle("titleEdited");
+            categoryDTO.setDescription("descriptionEdited");
+            categoryDTO.setImageURL("ImageURLEdited");
+
+            CategoryDTO categoryUpdated = categoryService.update(categoryDTO,1L);
+
+            assertEquals(categoryDTO.getTitle(), categoryUpdated.getTitle(), "Titles don't match.");
+            assertEquals(categoryDTO.getDescription(), categoryUpdated.getDescription(), "Descriptions don't match.");
+            assertEquals(categoryDTO.getImageURL(), categoryUpdated.getImageURL(), "ImageURLs don't match.");
+
+        } catch (NotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testDelete(){
+        try {
+            categoryService.delete(1L);
+            assertNull(categoryService.searchById(categoryDTO.getId()));
+        } catch (NotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 
