@@ -13,7 +13,8 @@ export default function Input({
    isDisabled,
    setValue,
    errors,
-   setInputValidation
+   setInputValidation,
+   minDate = null
 }) {
    const [isFocus, setFocus] = useState(false);
    const [isInvalid, setInvalid] = useState(false);
@@ -32,8 +33,8 @@ export default function Input({
 
    const handleChangeInput = $event => {
       const error = errors
-      .map(validationError => validationError($event.target.value, name))
-      .reduce((messages, error) => `${error ? error + '.': ''} ${messages} `, '')
+         .map(validationError => validationError($event.target.value, name))
+         .reduce((messages, error) => `${error ? error + '.' : ''} ${messages} `, '');
       if (!Boolean(error.trim())) {
          setValue($event.target.value);
          setInvalid(false);
@@ -78,6 +79,7 @@ export default function Input({
                   ref={inputRef}
                   placeholder={placeholder}
                   plugins={[<DatePanel />]}
+                  minDate={minDate}
                   range
                />
             ) : (

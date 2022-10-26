@@ -24,9 +24,10 @@ const Searcher = ({ setDate, setPlace, typeHeadOptions }) => {
             <Input
                icon={<CalendarIcon />}
                placeholder={'Fecha de inicio - Fecha de salida'}
-               type="date-picker"   
+               type="date-picker"
                errors={getValidationErrors('datepicker', true)}
                setValue={setDate}
+               minDate={new Date()}
             />
             <Button classList={'searchButton db-button-primary'}>Buscar</Button>
          </div>
