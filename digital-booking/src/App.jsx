@@ -4,6 +4,8 @@ import { router } from './core/Routes';
 import Header from './components/Header/Header';
 import { DataProvider } from './core/Context';
 
+
+
 function App() {
    return (
       <DataProvider>
