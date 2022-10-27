@@ -5,22 +5,21 @@ import { useContext } from "react";
 import HeaderButtons from "./HeaderButtons/HeaderButton";
 import {Avatar} from "../Avatar/Avatar"
 
-
-
 const Header = () => {
 
     const userContext = useContext(Context);
 
-
     return (
         < header >
-            <div className="headerContainer">
-                <Logo />
-                <div className="headerItems">
+            <div className="db-header db-header-container">
+                <a href="/">
+                    <Logo />
+                </a>
+                <div className="db-header-items">
                     {userContext.user ? <Avatar /> : <HeaderButtons />}
                 </div></div>
         </header>
     )
 } 
-export default Header;
 
+export default Header;

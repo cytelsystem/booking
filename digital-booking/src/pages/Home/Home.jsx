@@ -54,8 +54,11 @@ const categories = [category, category, category, category];
 const products = [product, product, product, product];
 
 const Home = () => {
-   const [selectedPlace, setPlace] = useState(null);
-   const [selectedDate, setDate] = useState(null);
+
+   const searchForm = {
+      place: {state: useState(null), isValid: useState(false)},
+      date: {state: useState(null), isValid: useState(false)},
+   }
 
    useEffect(() => {
       const categoriesAnimations = gsap.from('#home .db-categories .cards > a', {
@@ -81,7 +84,7 @@ const Home = () => {
 
    return (
       <div id="home">
-         <Searcher setDate={setDate} setPlace={setPlace} typeHeadOptions={options} />
+         <Searcher setDate={searchForm.date.state[1]} setPlace={searchForm.place.state[1]} setPlaceValidation={searchForm.place.isValid[1]} setDateValidation={searchForm.date.isValid[1]} typeHeadOptions={options} />
          <Categories categories={categories} />
          <Recomendations products={products} />
       </div>
