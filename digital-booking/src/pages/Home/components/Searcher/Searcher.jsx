@@ -3,7 +3,6 @@ import CalendarIcon from '../../../../shared/Icons/CalendarIcon';
 import LocationIcon from '../../../../shared/Icons/locationIcon';
 import Input from '../../../../shared/Input/Input';
 import Typehead from '../../../../shared/Input/Typehead';
-import { getValidations } from '../../../../utils/formValidations';
 import { getValidationErrors } from '../../../../utils/validationErrors';
 
 const Searcher = ({ setDate, setPlace, typeHeadOptions }) => {
@@ -16,7 +15,6 @@ const Searcher = ({ setDate, setPlace, typeHeadOptions }) => {
                placeholder={'¿A donde vamos?'}
                icon={<LocationIcon />}
                isDisabled={false}
-               validations={getValidations('typehead', true)}
                errors={getValidationErrors('typehead', true)}
                setValue={setPlace}
                items={typeHeadOptions}
@@ -27,7 +25,9 @@ const Searcher = ({ setDate, setPlace, typeHeadOptions }) => {
                icon={<CalendarIcon />}
                placeholder={'Fecha de inicio - Fecha de salida'}
                type="date-picker"
+               errors={getValidationErrors('datepicker', true)}
                setValue={setDate}
+               minDate={new Date()}
             />
             <Button classList={'searchButton db-button-primary'}>Buscar</Button>
          </div>
