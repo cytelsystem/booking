@@ -16,15 +16,14 @@ const Header = () => {
     }
 
     return (
-        < header >
-            <div className="db-header db-header-container">
-                <a href="/">
-                    <Logo />
-                </a>
-                <div className="db-header-items">
-                    {userContext.user ? <Avatar {...userContext.user} logOut={logOut} /> : <HeaderButtons />}
-                </div></div>
-        </header>
+        <div className="db-header db-header-container">
+            <a href="/">
+                <Logo />
+            </a>
+            <div className="db-header-items">
+                {userContext && userContext.user ? <Avatar {...userContext.user} logOut={logOut} /> : <HeaderButtons />}
+            </div>
+        </div>
     )
 } 
 

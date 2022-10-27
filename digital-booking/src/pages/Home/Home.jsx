@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import './Home.scss';
 import LocationIcon from '../../shared/Icons/locationIcon';
 import Categories from './components/Categories/Categories';
 import Recomendations from './components/Recomendations/Recomendations';
 import Searcher from './components/Searcher/Searcher';
 import gsap from 'gsap';
+import { Context } from '../../core/Context';
 
 var options = [
    {
@@ -55,6 +56,8 @@ const products = [product, product, product, product];
 
 const Home = () => {
 
+   const categoriesContext = useContext(Context);
+
    const searchForm = {
       place: {state: useState(null), isValid: useState(false)},
       date: {state: useState(null), isValid: useState(false)},
@@ -85,7 +88,7 @@ const Home = () => {
    return (
       <div id="home">
          <Searcher setDate={searchForm.date.state[1]} setPlace={searchForm.place.state[1]} setPlaceValidation={searchForm.place.isValid[1]} setDateValidation={searchForm.date.isValid[1]} typeHeadOptions={options} />
-         <Categories categories={categories} />
+         <Categories categories={categoriesContext.categories} />
          <Recomendations products={products} />
       </div>
    );

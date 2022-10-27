@@ -6,10 +6,10 @@ const CategoryCard = ({ category }) => {
    return (
       <a href={'#' /* here goes the link based on the category name */}>
          <Card classList={'db-card-category'}>
-            <img className="db-card-category-image" src={category.image} alt="" />
+            <img className="db-card-category-image" src={category.imageURL} alt={category.title} />
             <div className="db-card-category-content">
-               <h3>{category.name}</h3>
-               <p>{`${addDots.format(category.quantity)} ${category.name.toLowerCase()}`}</p>
+               <h3>{category.title}</h3>
+               <p>{`${addDots.format(category.description)} ${category.title.toLowerCase()}`}</p>
             </div>
          </Card>
       </a>
