@@ -58,7 +58,7 @@ const Home = () => {
    const [selectedDate, setDate] = useState(null);
 
    useEffect(() => {
-      const categoriesAnimations = gsap.from('#home .categories .cards > a', {
+      const categoriesAnimations = gsap.from('#home .db-categories .cards > a', {
          duration: 0.5,
          opacity: 0,
          yPercent: 20,
@@ -66,7 +66,7 @@ const Home = () => {
          ease: 'power2.out',
       });
 
-      const recomendationsAnimations = gsap.from('#home .recommendations .cards .db-card', {
+      const recomendationsAnimations = gsap.from('#home .db-recommendations .cards .db-card', {
          duration: 0.5,
          opacity: 0,
          scale: 0.6,

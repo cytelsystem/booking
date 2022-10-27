@@ -108,5 +108,10 @@
       .rmdp-day.rmdp-today span {
          background-color: var(--color-primary-dark);
       }
+
+      .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
+         background-color: var(--color-primary-light);
+         color: black;
+      }
    }
 }
