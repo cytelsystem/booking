@@ -9,6 +9,12 @@ const Header = () => {
 
     const userContext = useContext(Context);
 
+    const logOut = () => {
+        userContext.setUser(null);
+        sessionStorage.removeItem("CURRENT_USER");
+        window.location.href = "/";
+    }
+
     return (
         < header >
             <div className="db-header db-header-container">
@@ -16,7 +22,7 @@ const Header = () => {
                     <Logo />
                 </a>
                 <div className="db-header-items">
-                    {userContext.user ? <Avatar /> : <HeaderButtons />}
+                    {userContext.user ? <Avatar {...userContext.user} logOut={logOut} /> : <HeaderButtons />}
                 </div></div>
         </header>
     )

@@ -2,15 +2,17 @@ import MainCenterLayout from '../../shared/Layouts/MainCenterLayout/MainCenterLa
 import Input from '../../shared/Input/Input';
 import Button from '../../shared/Button/Button';
 import Spinner from '../../shared/Spinner/Spinner';
-import { json, Link, useNavigate } from 'react-router-dom';
-import { getValidationErrors, passwordConfirmValidation } from '../../utils/validationErrors';
-import { loginUser, registerUser } from '../../core/services/login';
+import { Link, useNavigate } from 'react-router-dom';
+import { getValidationErrors} from '../../utils/validationErrors';
+import { loginUser } from '../../core/services/login';
 import { formStateValidation } from '../../utils/formStateMapper';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Alert from '../../shared/Alert/Alert';
+import { Context } from '../../core/Context';
 
 const Login = () => {
    let browserNavigate = useNavigate();
+   const userContext = useContext(Context);
 
    const [isLoading, setIsLoading] = useState(false);
    const [failedAuth, setFailedAuth] = useState(false);
@@ -25,7 +27,8 @@ const Login = () => {
       loginUser(loginForm).then(userAuth => {
          setTimeout(() => {
             if (userAuth) {
-               localStorage.setItem('CURRENT_USER', JSON.stringify(userAuth));
+               sessionStorage.setItem('CURRENT_USER', JSON.stringify(userAuth));
+               userContext.setUser(userAuth);
                browserNavigate('/');
             } else {
                setFailedAuth(true)
@@ -34,6 +37,10 @@ const Login = () => {
          }, 2000);
       });
    };
+
+   const closeAlert = () => {
+      setFailedAuth(false)
+   }
 
    return (
       <>
@@ -77,7 +84,7 @@ const Login = () => {
             
          </MainCenterLayout>
          { failedAuth ? 
-            <Alert type={'error'}>
+            <Alert type={'error'} close={closeAlert}>
                Usuario o contraseña incorrectos.<br/>¡Intente de nuevo!
             </Alert> : null
          }  

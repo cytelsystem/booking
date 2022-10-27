@@ -20,9 +20,26 @@
         padding: 25px;
         border-radius: var(--border-radius-medium);
 
+        svg {
+            position: relative;
+            left: 75px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
         &.error {
             background-color: var(--error-contrast);
             color: var(--error);
+
+            svg path {
+                fill: var(--error);
+
+                &:hover {
+                   opacity: 0.5;
+                }
+            }
         }
     }
 }

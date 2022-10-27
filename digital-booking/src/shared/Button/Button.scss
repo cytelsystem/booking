@@ -9,13 +9,14 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    opacity: 1 !important;
 
     &:hover {
         cursor: pointer;
     }
 
     &-disabled {
-        opacity: 0.5;
+        opacity: 0.5 !important;
     }
 
     &-smaller {

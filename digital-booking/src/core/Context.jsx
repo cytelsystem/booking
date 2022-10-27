@@ -10,8 +10,8 @@ export const DataProvider = ({children})=>{
     const [user, setUser] = useState(null);
     
     useEffect (()=>{
-        const userStorage = localStorage.getItem("CURRENT_USER");
-        setUser (userStorage);
+        const userStorage = JSON.parse(sessionStorage.getItem("CURRENT_USER"));
+        setUser(userStorage);
     },[]);
 
     return(
