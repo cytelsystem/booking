@@ -39,20 +39,69 @@ const product = {
       points: 8,
       textRate: 'Muy bueno',
       distance: 'A 900 m del centro',
+      location: 'MDE',
       amenities: ['wifi', 'pool'],
       description:
          'En el corazón de San Telmo, disfruta de un albergue inspirado en las pasiones de Buenos Aires.',
    },
 };
 
-const category = {
-   name: 'Hoteles',
-   quantity: 807105,
-   image: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+const product2 = {
+   image: {
+      url: 'https://construccionesprisma.com.co/images/apartment_photos/22_41_pradoalto97.5m201.jpg',
+      productName: 'apto2',
+   },
+   info: {
+      title: 'Title',
+      category: 'Hoteles',
+      points: 10,
+      textRate: 'Excelente',
+      distance: 'A 1.5 km del centro',
+      location: 'MDE',
+      amenities: ['wifi', 'pool'],
+      description:
+         'En el corazón de San Telmo, disfruta de un albergue inspirado en las pasiones de Buenos Aires.',
+   },
 };
 
-const categories = [category, category, category, category];
-const products = [product, product, product, product];
+const product3 = {
+   image: {
+      url: 'https://construccionesprisma.com.co/images/apartment_photos/22_41_pradoalto97.5m201.jpg',
+      productName: 'apto3',
+   },
+   info: {
+      title: 'Title',
+      category: 'Casas',
+      points: 6,
+      textRate: 'Regular',
+      distance: 'A 2.5 km del centro',
+      location: 'MDE',
+      amenities: [],
+      description:
+         'En el corazón de San Telmo, disfruta de un albergue inspirado en las pasiones de Buenos Aires.',
+   },
+};
+
+const product4 = {
+   image: {
+      url: 'https://construccionesprisma.com.co/images/apartment_photos/22_41_pradoalto97.5m201.jpg',
+      productName: 'apto4',
+   },
+   info: {
+      title: 'Title',
+      category: 'Habitaciones',
+      points: 7,
+      textRate: 'Bueno',
+      distance: 'A 3.5 km del centro',
+      location: 'MDE',
+      amenities: ['wifi'],
+      description:
+         'En el corazón de San Telmo, disfruta de un albergue inspirado en las pasiones de Buenos Aires.',
+   },
+};
+
+
+const products = [product, product2, product3, product4, product, product2, product3, product4];
 
 const Home = () => {
 
@@ -88,7 +137,7 @@ const Home = () => {
    return (
       <div id="home">
          <Searcher setDate={searchForm.date.state[1]} setPlace={searchForm.place.state[1]} setPlaceValidation={searchForm.place.isValid[1]} setDateValidation={searchForm.date.isValid[1]} typeHeadOptions={options} />
-         <Categories categories={categoriesContext.categories} />
+         <Categories categories={categoriesContext.categories.slice(0,4)} />
          <Recomendations products={products} />
       </div>
    );
