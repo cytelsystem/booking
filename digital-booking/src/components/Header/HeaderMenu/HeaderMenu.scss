@@ -1,13 +1,13 @@
 .db-header-menu {
-    display: none;
+   display: none;
 
-    svg {
-        &:hover {
-            cursor: pointer;
-        }
-    }
+   svg {
+      &:hover {
+         cursor: pointer;
+      }
+   }
 
-    @media (max-width: 450px) {
-        display: block;
-    }
+   @media (max-width: 450px) {
+      display: block;
+   }
 }
