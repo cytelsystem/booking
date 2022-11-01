@@ -8,11 +8,11 @@ export default function HeaderMenu() {
    const [closeSideNav, setCloseSideNav] = useState(true);
 
    const closeSidePanel = () => {
-      gsap.to('.db-side-panel', { xPercent: 100, ease: 'power2.in' });
+      gsap.fromTo('.db-side-panel', { translateX: 0 }, { translateX: '100%', ease: 'power2.in' });
    };
 
    const openSidePanel = () => {
-      gsap.to('.db-side-panel', { xPercent: -100, ease: 'power2.out' });
+      gsap.fromTo('.db-side-panel', { translateX: '100%' }, { translateX: '0', ease: 'power2.in' });
    };
 
    return (

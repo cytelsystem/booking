@@ -1,4 +1,4 @@
-import Gif from '../../../public/loader-gif.gif';
+import Gif from '../../assets/loader-gif.gif';
 import './LoadingPage.scss'
 
 const LoadingScreen = () => {
