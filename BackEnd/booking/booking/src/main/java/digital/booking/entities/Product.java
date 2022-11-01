@@ -21,20 +21,25 @@ public class Product {
     @NotNull
     private Long id;
 
-    @NotNull
+    // Falta agregar @Column (ver con Hector qué columnas tendrá la tabla de productos)
+
+    private String title;
+
+    private String description;
+
     @OneToOne
     private Category category;
 
-// Agregar en Category la lista de productos (relación)
-    @NotNull
+    // Agregar en la clase Category la lista de productos (relación)
+
     @OneToMany
     private List<Feature> features;
 
-    @NotNull
     @OneToOne
     private City city;
 
-    @NotNull
+    // Ver si debería haber una clase de tipo Ubicacion (con una ciudad y un país)
+
     @OneToMany
     private List<Image> images;
 
