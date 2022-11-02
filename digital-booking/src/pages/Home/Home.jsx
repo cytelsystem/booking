@@ -6,6 +6,7 @@ import Recomendations from './components/Recomendations/Recomendations';
 import Searcher from './components/Searcher/Searcher';
 import gsap from 'gsap';
 import { Context } from '../../core/Context';
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 
 var options = [
    {
@@ -100,17 +101,15 @@ const product4 = {
    },
 };
 
-
 const products = [product, product2, product3, product4, product, product2, product3, product4];
 
 const Home = () => {
-
    const categoriesContext = useContext(Context);
 
    const searchForm = {
-      place: {state: useState(null), isValid: useState(false)},
-      date: {state: useState(null), isValid: useState(false)},
-   }
+      place: { state: useState(null), isValid: useState(false) },
+      date: { state: useState(null), isValid: useState(false) },
+   };
 
    useEffect(() => {
       const categoriesAnimations = gsap.from('#home .db-categories .cards > a', {
@@ -135,11 +134,21 @@ const Home = () => {
    }, []);
 
    return (
-      <div id="home">
-         <Searcher setDate={searchForm.date.state[1]} setPlace={searchForm.place.state[1]} setPlaceValidation={searchForm.place.isValid[1]} setDateValidation={searchForm.date.isValid[1]} typeHeadOptions={options} />
-         <Categories categories={categoriesContext.categories.slice(0,4)} />
-         <Recomendations products={products} />
-      </div>
+      <>
+         <div id="home">
+            <Searcher
+               setDate={searchForm.date.state[1]}
+               setPlace={searchForm.place.state[1]}
+               setPlaceValidation={searchForm.place.isValid[1]}
+               setDateValidation={searchForm.date.isValid[1]}
+               typeHeadOptions={options}
+            />
+            {categoriesContext && (
+               <Categories categories={categoriesContext.categories.slice(0, 4)} />
+            )}
+            <Recomendations products={products} />
+         </div>
+      </>
    );
 };
 
