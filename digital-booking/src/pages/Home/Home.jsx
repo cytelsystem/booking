@@ -144,7 +144,7 @@ const Home = () => {
                typeHeadOptions={options}
             />
             {categoriesContext && (
-               <Categories categories={categoriesContext.categories.slice(0, 4)} />
+               <Categories categories={categoriesContext.categories && categoriesContext.categories.slice(0, 4)} />
             )}
             <Recomendations products={products} />
          </div>
