@@ -6,25 +6,22 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "features")
-public class Feature {
+@Table(name = "amenities")
+public class Amenity {
 
     @Id
-    @SequenceGenerator(name="feature_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "feature_seq")
+    @SequenceGenerator(name="amenity_seg",initialValue = 1,allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "amenity_seq")
+
     @NotNull
     private Long id;
 
-    @Column
     @NotNull
+    @Column
     private String name;
-
-    @OneToMany
-    private List<Product> products;
 }

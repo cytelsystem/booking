@@ -1,9 +1,6 @@
 package digital.booking.DTO;
 
-import digital.booking.entities.Category;
-import digital.booking.entities.City;
-import digital.booking.entities.Feature;
-import digital.booking.entities.Image;
+import digital.booking.entities.*;
 import lombok.*;
 
 import java.util.List;
@@ -17,8 +14,8 @@ public class ProductDTO {
     private String title;
     private String description;
     private Category category;
-    private List<Feature> features;
-    private City city;
+    private List<Amenity> amenities;
+    private Location location;
     private List<Image> images;
 
 

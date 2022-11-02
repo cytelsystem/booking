@@ -16,31 +16,34 @@ import java.util.List;
 public class Product {
 
     @Id
-    @SequenceGenerator(name="product_seq", allocationSize = 1)
+    @SequenceGenerator(name="product_seg",initialValue = 1,allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "product_seq")
+
     @NotNull
     private Long id;
 
-    // Falta agregar @Column (ver con Hector qué columnas tendrá la tabla de productos)
-
+    @NotNull
+    @Column
     private String title;
 
+    @NotNull
+    @Column
     private String description;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "categoryId",nullable = false)
     private Category category;
 
-    // Agregar en la clase Category la lista de productos (relación)
-
-    @OneToMany
-    private List<Feature> features;
-
     @OneToOne
-    private City city;
+    @JoinColumn(name = "locationId",nullable = false)
+    private Location location;
 
-    // Ver si debería haber una clase de tipo Ubicacion (con una ciudad y un país)
+    @ManyToMany
+    @JoinColumn(name = "amenities",nullable = false)
+    private List<Amenity> amenities;
 
     @OneToMany
+    @JoinColumn(name = "images",nullable = false)
     private List<Image> images;
 
 }

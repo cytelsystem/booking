@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,19 +13,23 @@ import java.util.List;
 @Entity
 @Table(name = "cities")
 public class City {
-
     @Id
-    @SequenceGenerator(name="city_seq", allocationSize = 1)
+    @SequenceGenerator(name="city_seg",initialValue = 1,allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "city_seq")
+
     @NotNull
     private Long id;
 
-    @Column
     @NotNull
+    @Column
     private String name;
 
-    @OneToMany
-    private List<Product> products;
+    @NotNull
+    @Column
+    private String state;
 
+    @NotNull
+    @Column
+    private String country;
 
 }

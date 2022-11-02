@@ -11,18 +11,21 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "images")
+@Table(name = "categories")
 public class Image {
 
     @Id
-    @SequenceGenerator(name="image_seq", allocationSize = 1)
+    @SequenceGenerator(name="image_seg",initialValue = 1,allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "image_seq")
+
     @NotNull
     private Long id;
 
+    @NotNull
     @Column
     private String title;
 
+    @NotNull
     @Column
-    private String url;
+    private String URL;
 }
