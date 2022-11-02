@@ -133,8 +133,6 @@ const Home = () => {
       };
    }, []);
 
-   console.log(categoriesContext.categories);
-
    return (
       <>
          <div id="home">
