@@ -1,11 +1,9 @@
 import gsap from 'gsap';
-import { useState } from 'react';
 import HamburgerIcon from '../../../shared/Icons/HamburgerIcon';
 import SideNav from '../SideNav/SideNav';
 import './HeaderMenu.scss';
 
 export default function HeaderMenu() {
-   const [closeSideNav, setCloseSideNav] = useState(true);
 
    const closeSidePanel = () => {
       gsap.fromTo('.db-side-panel', { translateX: 0 }, { translateX: '100%', ease: 'power2.in' });

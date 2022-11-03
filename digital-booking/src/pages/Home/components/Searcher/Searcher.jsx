@@ -3,6 +3,7 @@ import CalendarIcon from '../../../../shared/Icons/CalendarIcon';
 import LocationIcon from '../../../../shared/Icons/locationIcon';
 import Input from '../../../../shared/Input/Input';
 import Typehead from '../../../../shared/Input/Typehead';
+import titleCase from '../../../../utils/titleCase';
 import { getValidationErrors } from '../../../../utils/validationErrors';
 
 const Searcher = ({
@@ -11,7 +12,19 @@ const Searcher = ({
    setPlaceValidation,
    setDateValidation,
    typeHeadOptions,
+   search,
 }) => {
+   const typeHeadOptionsMapper = () => {
+      return typeHeadOptions.map(option => {
+         return {
+            id: option.id,
+            title: `${titleCase(option.name)} - ${titleCase(option.state)}`,
+            subtitle: option.country,
+            icon: <LocationIcon />,
+         };
+      });
+   };
+
    return (
       <section className="searcher">
          <h1>Busca ofertas en hoteles, casas y mucho más</h1>
@@ -23,7 +36,7 @@ const Searcher = ({
                isDisabled={false}
                errors={getValidationErrors('typehead', true)}
                setValue={setPlace}
-               items={typeHeadOptions}
+               items={typeHeadOptionsMapper()}
                maxItemsLength={4}
                name={'Destino'}
                setInputValidation={setPlaceValidation}
@@ -37,7 +50,9 @@ const Searcher = ({
                minDate={new Date()}
                setInputValidation={setDateValidation}
             />
-            <Button classList={'searchButton db-button-primary'}>Buscar</Button>
+            <Button classList={'searchButton db-button-primary'} action={search}>
+               Buscar
+            </Button>
          </div>
       </section>
    );

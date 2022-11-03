@@ -1,5 +1,5 @@
 import { poolPaths, wifiPaths } from './amenitiesPaths';
-import './Amenity.scss'
+import './Amenity.scss';
 
 const Amenity = ({ type, label = false }) => {
    // const paths = useRef(null);
@@ -11,6 +11,7 @@ const Amenity = ({ type, label = false }) => {
          case 'pool':
             return poolPaths;
          default:
+            console.log(type);
             console.error('Amenity name not identified');
             return null;
       }
@@ -31,7 +32,7 @@ const Amenity = ({ type, label = false }) => {
                </clipPath>
             </defs>
          </svg>
-         {label && <span className='label'>{label}</span>}
+         {label && <span className="label">{label}</span>}
       </div>
    );
 };

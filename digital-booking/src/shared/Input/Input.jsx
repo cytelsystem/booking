@@ -94,6 +94,7 @@ export default function Input({
                   ref={inputRef}
                   placeholder={placeholder}
                   plugins={datePickerPlugins}
+                  format="DD/MM/YYYY"
                   minDate={minDate}
                   numberOfMonths={isMobile ? 1 : 2}
                   range
