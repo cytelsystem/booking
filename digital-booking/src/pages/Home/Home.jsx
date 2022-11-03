@@ -67,7 +67,7 @@ const Home = () => {
 
    const searchForm = {
       city: { state: useState(null), isValid: useState(false) },
-      date: { state: useState([null, null]), isValid: useState(false) },
+      date: { state: useState(null), isValid: useState(false) },
    };
 
    const search = async () => {
