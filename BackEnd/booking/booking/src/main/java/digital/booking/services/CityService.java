@@ -19,6 +19,7 @@ public class CityService implements IService<City> {
 
     @Autowired
     private ObjectMapper mapper;
+
     @Override
     public List<City> searchAll() {
         logger.debug("Searching all cities...");
@@ -27,21 +28,46 @@ public class CityService implements IService<City> {
 
     @Override
     public City searchById(Long id) throws NotFoundException {
-        return null;
+        logger.debug("Searching city with id: " + id);
+        return cityRepository.findById(id).orElseThrow(() -> new NotFoundException("The " +
+                "city with id: " + id + " was not found."));
     }
 
     @Override
-    public City create(City entity) throws BadRequestException {
-        return null;
+    public City create(City city) throws BadRequestException {
+        if (city==null){
+            logger.error("The city entered is null.");
+            throw new BadRequestException("The city is null.");
+        } else{
+            logger.debug("Creating new city...");
+            cityRepository.save(city);
+            logger.info("The city was created successfully.");
+        }
+        return city;
     }
 
     @Override
-    public City update(City entity, Long id) throws NotFoundException {
-        return null;
+    public City update(City city, Long id) throws NotFoundException {
+        City existingCity = cityRepository.findById(city.getId())
+                .orElseThrow(() -> new NotFoundException("The city with id " + city.getId() +
+                        "was not found."));
+
+        logger.debug("Updating city...");
+        existingCity.setName(city.getName());
+        existingCity.setState(city.getState());
+        existingCity.setCountry(city.getCountry());
+
+        cityRepository.save(existingCity);
+        logger.info("The city was updated successfully.");
+        return existingCity;
     }
 
-    @Override
+        @Override
     public void delete(Long id) throws NotFoundException {
+            City city = cityRepository.findById(id).orElseThrow(() -> new NotFoundException("The " +
+                    "city with the id: " + id + " was not found."));
+            logger.debug("Deleting city...");
+            cityRepository.delete(city);
 
     }
 }
