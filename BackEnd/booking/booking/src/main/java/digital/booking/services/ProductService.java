@@ -9,10 +9,12 @@ import digital.booking.interfaces.IService;
 import digital.booking.repositories.ProductRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ProductService implements IService<ProductDTO> {
 
     private final Logger logger = Logger.getLogger(CategoryService.class);
@@ -70,6 +72,8 @@ public class ProductService implements IService<ProductDTO> {
         existingProduct.setDescription(product.getDescription());
         existingProduct.setAmenities(product.getAmenities());
         existingProduct.setImages(product.getImages());
+        existingProduct.setItems(product.getItems());
+
 
         productRepository.save(existingProduct);
         logger.info("The product was updated successfully.");

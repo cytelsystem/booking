@@ -46,4 +46,8 @@ public class Product {
     @JoinColumn(name = "images",nullable = false)
     private List<Image> images;
 
+    @ManyToMany
+    @JoinColumn(name = "items",nullable = false)
+    private List<Item> items;
+
 }
