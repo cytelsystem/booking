@@ -48,4 +48,8 @@ public class Product {
     @JoinColumn(name = "product",nullable = false)
     private List<Image> images;
 
+    @ManyToMany
+    @JoinColumn(name = "items",nullable = false)
+    private List<Item> items;
+
 }
