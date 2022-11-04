@@ -29,4 +29,12 @@ public class Location {
     @Column
     private String address;
 
+    @NotNull
+    @Column
+    private String latitude;
+
+    @NotNull
+    @Column
+    private String longitude;
+
 }
