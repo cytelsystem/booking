@@ -18,9 +18,6 @@ const SocialNetworks = () => {
          <a href="#">
             <InstagramIcon />
          </a>
-         <a href="#">
-            <InstagramIcon />
-         </a>
       </>
    );
 };
