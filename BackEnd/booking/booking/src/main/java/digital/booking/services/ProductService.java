@@ -88,4 +88,17 @@ public class ProductService implements IService<ProductDTO> {
         productRepository.delete(product);
 
     }
+
+    public List<ProductDTO> searchRandom() {
+        List<Product> products = productRepository.findAll();
+        logger.debug("Searching all products...");
+
+        List<ProductDTO> productsDTO = new ArrayList<>();
+        for (Product product : products){
+            productsDTO.add(mapper.convertValue(product,ProductDTO.class));
+        }
+
+        logger.info("Listing all products...");
+        return productsDTO;
+    }
 }

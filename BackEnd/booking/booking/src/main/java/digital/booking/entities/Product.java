@@ -50,4 +50,8 @@ public class Product {
     @JoinColumn(name = "items",nullable = false)
     private List<Item> items;
 
+    @OneToMany
+    @JoinColumn(name = "ratings",nullable = false)
+    private List<Rating> ratings;
+
 }
