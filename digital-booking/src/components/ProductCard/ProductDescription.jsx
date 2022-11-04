@@ -1,8 +1,7 @@
 import LocationIcon from '../../shared/Icons/LocationIcon';
 import Button from '../../shared/Button/Button';
 import './ProductCard.scss';
-import WifiIcon from '../../shared/Icons/WifiIcon';
-import PoolIcon from '../../shared/Icons/PoolIcon';
+import Amenity from '../../shared/Amenity/Amenity';
 import { Link } from 'react-router-dom';
 
 export default function ProductDescription({
@@ -15,17 +14,6 @@ export default function ProductDescription({
    amenities,
    description,
 }) {
-   const amenitiesList = amenities.map(($amenity, i) => {
-      switch ($amenity.name) {
-         case 'wifi':
-            return <WifiIcon key={i} />;
-         case 'pool':
-            return <PoolIcon key={i} />;
-         default:
-            break;
-      }
-   });
-
    return (
       <div className="db-product-description">
          <div className="db-product-header">
@@ -44,7 +32,11 @@ export default function ProductDescription({
                <span>{distance}</span>
                <span className="db-product-location-map--show">Mostrar en el mapa</span>
             </div>
-            <div className="db-product-location-amenities">{amenitiesList}</div>
+            <div className="db-product-location-amenities">
+               {amenities.map(($amenity, i) => (
+                  <Amenity key={i} type={$amenity.name} />
+               ))}
+            </div>
          </div>
          <div className="db-product-text">{description}</div>
          <Link to={`product/${id}`}>
