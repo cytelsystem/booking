@@ -8,6 +8,9 @@ import Availability from './Components/Availability';
 import Highlights from './Components/Highlights';
 import Images from './Components/Images';
 import gsap from 'gsap';
+import { getProductById } from '../../core/services/Product';
+import HeaderApartment from './Components/HeaderApartment';
+import Location from './Components/Location';
 
 const product = {
    image: {
@@ -66,12 +69,20 @@ const product = {
 };
 
 const Apartment = () => {
-   //de aqui sacas la id para traer el producto
    const { apartmentId } = useParams();
+   const [currentProduct, setCurrentProduct] = useState(null);
 
    const [imageIndex, setImageIndex] = useState(1);
 
+   const getProduct = async () => {
+      await getProductById(apartmentId).then((product) => setCurrentProduct(product));
+   }
+
    useEffect(() => {
+
+      getProduct();
+
+      
       const mobileImagesObserver = new IntersectionObserver(
          entries => {
             entries.forEach(entry => {
@@ -102,14 +113,22 @@ const Apartment = () => {
    }, []);
 
    return (
-      <div className="db-apartment-container">
-         <Images imageIndex={imageIndex} images={[product.image, ...product.gallery]} />
-         <Description title={product.info.title}>{product.info.detailed_description}</Description>
-         <Amenities amenities={product.info.amenities} />
-         <Availability />
-         <section className="db-apartment-map"></section>
-         <Highlights highlights={product.highlights} />
-      </div>
+      <>
+         {
+            currentProduct ? 
+         
+            <div className="db-apartment-container">
+               <HeaderApartment title={currentProduct.title} category={currentProduct.category.title}/>
+               <Location location={currentProduct.location}/>
+               <Images imageIndex={imageIndex} images={[currentProduct.images[0], ...currentProduct.images.slice(1)]} />
+               <Description title={currentProduct.title}>{currentProduct.description}</Description>
+               <Amenities amenities={currentProduct.amenities} />
+               <Availability disabledDays={['2022/11/25','2022/11/26','2022/11/27']} />
+               <section className="db-apartment-map"></section>
+               <Highlights highlights={currentProduct.items} />
+            </div> : null
+         }
+      </>
    );
 };
 

@@ -38,8 +38,8 @@ export default function ProductDescription({
                ))}
             </div>
          </div>
-         <div className="db-product-text">{description}</div>
-         <Link to={`product/${id}`}>
+         <div className="db-product-text">{description.slice(0,100)}...</div>
+         <Link to={`product/${id}`} >
             <Button classList={'db-button-primary'}>Ver más</Button>
          </Link>
       </div>

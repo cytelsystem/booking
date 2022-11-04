@@ -9,7 +9,7 @@ const Amenities = ({ amenities }) => {
          <div className="db-amenities-container">
             <Layout>
                {amenities.map(amenity => (
-                  <Amenity type={amenity} key={amenity} label={amenity} />
+                  <Amenity type={amenity.name} key={amenity.id} label={amenity.name} />
                ))}
             </Layout>
          </div>
