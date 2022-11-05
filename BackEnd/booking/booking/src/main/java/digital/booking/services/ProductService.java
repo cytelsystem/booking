@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class ProductService implements IService<ProductDTO> {
@@ -90,15 +91,18 @@ public class ProductService implements IService<ProductDTO> {
     }
 
     public List<ProductDTO> searchRandom() {
-        List<Product> products = productRepository.findAll();
         logger.debug("Searching all products...");
+        List<ProductDTO> allProducts = searchAll();
 
-        List<ProductDTO> productsDTO = new ArrayList<>();
-        for (Product product : products){
-            productsDTO.add(mapper.convertValue(product,ProductDTO.class));
+        List<ProductDTO> randomProducts = new ArrayList<>();
+
+        for (int i = 0; i < 8; i++){
+            Random random = new Random();
+            int nxt = random.nextInt(allProducts.size());
+            randomProducts.add(allProducts.get(nxt));
         }
 
-        logger.info("Listing all products...");
-        return productsDTO;
+        logger.info("Listing random products...");
+        return randomProducts;
     }
 }
