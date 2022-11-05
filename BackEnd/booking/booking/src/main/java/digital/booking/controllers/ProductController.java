@@ -48,4 +48,9 @@ public class ProductController {
         productService.delete(id);
         return ResponseEntity.ok("Product deleted ID: " + id);
     }
+
+    @GetMapping
+    public ResponseEntity<List<ProductDTO>> findRandomProducts(){
+        return ResponseEntity.ok(productService.searchRandom());
+    }
 }
