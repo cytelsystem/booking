@@ -116,9 +116,12 @@ public class ProductService implements IService<ProductDTO> {
         logger.debug("Updating product...");
         existingProduct.setTitle(product.getTitle());
         existingProduct.setDescription(product.getDescription());
+        existingProduct.setCategory(product.getCategory());
         existingProduct.setAmenities(product.getAmenities());
+        existingProduct.setLocation(product.getLocation());
         existingProduct.setImages(product.getImages());
         existingProduct.setItems(product.getItems());
+        existingProduct.setRatings(product.getRatings());
 
 
         productRepository.save(existingProduct);
