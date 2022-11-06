@@ -1,14 +1,13 @@
 package digital.booking.controllers;
 
 import digital.booking.entities.Favorite;
+import digital.booking.exceptions.BadRequestException;
+import digital.booking.exceptions.NotFoundException;
 import digital.booking.services.FavoriteService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +19,22 @@ public class FavoriteController {
     @Autowired
     private FavoriteService favoriteService;
 
-    @Operation(summary = "Consultar Todas los favoritos")
+    @Operation(summary = "Consultar todos los favoritos")
     @GetMapping
     public ResponseEntity<List<Favorite>> findAllFavorites(){
         return ResponseEntity.ok(favoriteService.searchAll());
+    }
+
+    @Operation(summary = "Agregar nuevo favorito")
+    @PostMapping
+    public ResponseEntity<Favorite> createFavorite(@RequestBody Favorite favorite) throws BadRequestException {
+        return ResponseEntity.ok(favoriteService.create(favorite));
+    }
+
+    @Operation(summary = "Eliminar favorito")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteFavorite(@PathVariable Long id) throws NotFoundException {
+        favoriteService.delete(id);
+        return ResponseEntity.ok("Favorite deleted ID: " + id);
     }
 }
