@@ -73,8 +73,8 @@ public class FavoriteService implements IService<Favorite> {
 
     }
 
-    public List<Favorite> searchFavoritesByUser(Long id) {
+    public List<Favorite> findFavoritesByUserId(Long id) {
         logger.debug("Searching user's favorites, user's id: " + id);
-        return favoriteRepository.findFavoritesByUser(id);
+        return favoriteRepository.findFavoritesByUserId(id);
     }
 }

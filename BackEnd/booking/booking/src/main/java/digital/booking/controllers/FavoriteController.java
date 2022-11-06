@@ -22,7 +22,7 @@ public class FavoriteController {
     @Operation(summary = "Consultar todos los favoritos por usuario")
     @GetMapping("/{id}")
     public ResponseEntity<List<Favorite>> searchFavoritesByUser(@PathVariable Long id){
-        return ResponseEntity.ok(favoriteService.searchFavoritesByUser(id));
+        return ResponseEntity.ok(favoriteService.findFavoritesByUserId(id));
     }
 
     @Operation(summary = "Agregar nuevo favorito")
