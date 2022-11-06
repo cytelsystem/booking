@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -28,5 +29,9 @@ public class Favorite {
     @OneToOne
     @JoinColumn(name = "productId",nullable = false)
     private Product product;
+
+    @ManyToMany
+    @JoinColumn(name = "users",nullable = false)
+    private List<User> users;
 
 }
