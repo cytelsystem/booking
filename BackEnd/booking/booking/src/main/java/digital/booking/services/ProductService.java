@@ -144,13 +144,13 @@ public class ProductService implements IService<ProductDTO> {
 
         List<ProductDTO> randomProducts = new ArrayList<>();
 
-        for (int i = 0; i < 8; i++){
+        for (int i = 0; i < 6; i++){
             Random random = new Random();
             int nxt = random.nextInt(allProducts.size());
             randomProducts.add(allProducts.get(nxt));
         }
 
-        logger.info("Listing 8 random products...");
+        logger.info("Listing 6 random products...");
         return randomProducts;
     }
 
