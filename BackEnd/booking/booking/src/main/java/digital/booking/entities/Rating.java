@@ -22,6 +22,7 @@ public class Rating {
     @NotNull
     private Long id;
 
+    @NotNull
     @Column
     private Integer score;
 

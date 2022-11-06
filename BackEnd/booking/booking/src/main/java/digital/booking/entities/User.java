@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @SequenceGenerator(name="user_seg",initialValue = 1,allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "user_seq")
@@ -40,4 +41,8 @@ public class User {
     @ManyToMany
     @JoinColumn(name = "products",nullable = false)
     private List<Product> products;
+
+    @OneToMany
+    @JoinColumn(name = "favorites",nullable = false)
+    private List<Favorite> favorites;
 }

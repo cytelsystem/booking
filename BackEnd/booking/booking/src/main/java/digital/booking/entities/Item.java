@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "items")
 public class Item {
+
     @Id
     @SequenceGenerator(name="item_seg",initialValue = 1,allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "item_seq")
