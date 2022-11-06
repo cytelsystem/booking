@@ -21,6 +21,7 @@ import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 @Service
 public class ProductService implements IService<ProductDTO> {
@@ -133,4 +134,21 @@ public class ProductService implements IService<ProductDTO> {
         productRepository.delete(product);
 
     }
+
+    public List<ProductDTO> searchRandom() {
+        logger.debug("Searching all products...");
+        List<ProductDTO> allProducts = searchAll();
+
+        List<ProductDTO> randomProducts = new ArrayList<>();
+
+        for (int i = 0; i < 8; i++){
+            Random random = new Random();
+            int nxt = random.nextInt(allProducts.size());
+            randomProducts.add(allProducts.get(nxt));
+        }
+
+        logger.info("Listing random products...");
+        return randomProducts;
+    }
+
 }
