@@ -29,6 +29,4 @@ public class Favorite {
     @JoinColumn(name = "productId",nullable = false)
     private Product product;
 
-
-
 }
