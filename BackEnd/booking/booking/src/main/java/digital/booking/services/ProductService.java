@@ -150,7 +150,7 @@ public class ProductService implements IService<ProductDTO> {
             randomProducts.add(allProducts.get(nxt));
         }
 
-        logger.info("Listing random products...");
+        logger.info("Listing 8 random products...");
         return randomProducts;
     }
 
