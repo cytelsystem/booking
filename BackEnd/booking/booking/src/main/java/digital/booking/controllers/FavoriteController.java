@@ -19,12 +19,6 @@ public class FavoriteController {
     @Autowired
     private FavoriteService favoriteService;
 
-    @Operation(summary = "Consultar todos los favoritos por usuario")
-    @GetMapping("/{id}")
-    public ResponseEntity<List<Favorite>> searchFavoritesByUser(@PathVariable Long id){
-        return ResponseEntity.ok(favoriteService.findFavoritesByUserId(id));
-    }
-
     @Operation(summary = "Agregar nuevo favorito")
     @PostMapping
     public ResponseEntity<Favorite> createFavorite(@RequestBody Favorite favorite) throws BadRequestException {

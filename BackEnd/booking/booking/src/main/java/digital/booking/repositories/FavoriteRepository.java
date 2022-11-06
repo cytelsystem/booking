@@ -9,6 +9,4 @@ import java.util.List;
 
 @Repository
 public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
-    @Query(value = "select f from Favorite f INNER JOIN users u ON u.id = ?1")
-    List<Favorite>findFavoritesByUserId(Long id);
 }
