@@ -33,11 +33,11 @@ public class Product {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId",nullable = false)
+    @JoinColumn(name = "category_id",nullable = false)
     private Category category;
 
     @OneToOne
-    @JoinColumn(name = "locationId",nullable = false)
+    @JoinColumn(name = "location_id",nullable = false)
     private Location location;
 
     @ManyToMany

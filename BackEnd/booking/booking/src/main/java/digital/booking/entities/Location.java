@@ -22,7 +22,7 @@ public class Location {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "cityId",nullable = false)
+    @JoinColumn(name = "city_id",nullable = false)
     private City city;
 
     @NotNull
