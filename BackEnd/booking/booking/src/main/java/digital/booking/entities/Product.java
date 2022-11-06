@@ -45,7 +45,7 @@ public class Product {
     private List<Amenity> amenities;
 
     @OneToMany
-    @JoinColumn(name = "product",nullable = false)
+    @JoinColumn(name = "images",nullable = false)
     private List<Image> images;
 
     @ManyToMany
