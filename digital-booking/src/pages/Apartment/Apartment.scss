@@ -61,7 +61,7 @@
          }
       }
 
-      @media (max-width:450px) {
+      @media (max-width:768px) {
          padding: 0.5rem 0.5rem;
       }
    }
@@ -94,7 +94,25 @@
          }
       }
 
-      @media (max-width:450px) {
+      @media (max-width:768px) {
+         padding: 0.5rem 0.5rem;
+      }
+   }
+
+   .db-apartment-icons {
+      margin: 0;
+      padding: 1rem 2rem 0rem;
+
+      svg {
+         &:hover {
+            cursor: pointer;
+            path {
+               fill: var(--color-primary  );
+            }
+         }
+      }
+
+      @media (max-width:768px) {
          padding: 0.5rem 0.5rem;
       }
    }

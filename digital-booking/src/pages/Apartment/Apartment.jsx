@@ -11,6 +11,8 @@ import gsap from 'gsap';
 import { getProductById } from '../../core/services/Product';
 import HeaderApartment from './Components/HeaderApartment';
 import Location from './Components/Location';
+import ShareIcon from '../../shared/Icons/ShareIcon';
+import HeartIcon from '../../shared/Icons/HeartIcon';
 
 const product = {
    image: {
@@ -120,6 +122,14 @@ const Apartment = () => {
             <div className="db-apartment-container">
                <HeaderApartment title={currentProduct.title} category={currentProduct.category.title}/>
                <Location location={currentProduct.location}/>
+               <div className='db-apartment-icons'>
+                  <span>
+                     <ShareIcon/>
+                  </span>
+                  <span>
+                     <HeartIcon/>
+                  </span>
+               </div>
                <Images imageIndex={imageIndex} images={[currentProduct.images[0], ...currentProduct.images.slice(1)]} />
                <Description title={currentProduct.title}>{currentProduct.description}</Description>
                <Amenities amenities={currentProduct.amenities} />
