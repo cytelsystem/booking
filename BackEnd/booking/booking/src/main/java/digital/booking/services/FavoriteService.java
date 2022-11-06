@@ -72,4 +72,9 @@ public class FavoriteService implements IService<Favorite> {
         favoriteRepository.delete(favorite);
 
     }
+
+    public List<Favorite> searchFavoritesByUser(Long id) {
+        logger.debug("Searching user's favorites, user's id: " + id);
+        return favoriteRepository.findFavoritesByUser(id);
+    }
 }

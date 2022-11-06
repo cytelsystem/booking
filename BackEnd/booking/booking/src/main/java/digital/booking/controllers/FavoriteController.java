@@ -19,10 +19,10 @@ public class FavoriteController {
     @Autowired
     private FavoriteService favoriteService;
 
-    @Operation(summary = "Consultar todos los favoritos")
-    @GetMapping
-    public ResponseEntity<List<Favorite>> findAllFavorites(){
-        return ResponseEntity.ok(favoriteService.searchAll());
+    @Operation(summary = "Consultar todos los favoritos por usuario")
+    @GetMapping("/{id}")
+    public ResponseEntity<List<Favorite>> searchFavoritesByUser(@PathVariable Long id){
+        return ResponseEntity.ok(favoriteService.searchFavoritesByUser(id));
     }
 
     @Operation(summary = "Agregar nuevo favorito")
