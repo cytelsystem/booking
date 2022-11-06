@@ -28,7 +28,7 @@ public class ProductService implements IService<ProductDTO> {
 
     @PersistenceContext
     EntityManager entityManager;
-    private final Logger logger = Logger.getLogger(CategoryService.class);
+    private final Logger logger = Logger.getLogger(ProductService.class);
 
     @Autowired
     private ProductRepository productRepository;
