@@ -1,6 +1,5 @@
 package digital.booking.controllers;
 
-import digital.booking.DTO.ProductDTO;
 import digital.booking.entities.City;
 import digital.booking.exceptions.NotFoundException;
 import digital.booking.services.CityService;
