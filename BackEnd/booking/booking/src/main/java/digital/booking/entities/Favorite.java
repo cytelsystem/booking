@@ -22,12 +22,8 @@ public class Favorite {
     @NotNull
     private Long id;
 
-    @NotNull
-    @Column
-    private Boolean isFavorite;
-
     @OneToOne
-    @JoinColumn(name = "productId",nullable = false)
+    @JoinColumn(name = "product_id",nullable = false)
     private Product product;
 
     @ManyToMany

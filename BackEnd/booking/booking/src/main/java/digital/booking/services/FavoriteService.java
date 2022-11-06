@@ -57,7 +57,6 @@ public class FavoriteService implements IService<Favorite> {
                         "was not found."));
 
         logger.debug("Updating favorite...");
-        existingFavorite.setIsFavorite(favorite.getIsFavorite());
         existingFavorite.setProduct(favorite.getProduct());
 
         favoriteRepository.save(existingFavorite);
@@ -72,5 +71,4 @@ public class FavoriteService implements IService<Favorite> {
         favoriteRepository.delete(favorite);
 
     }
-
 }
