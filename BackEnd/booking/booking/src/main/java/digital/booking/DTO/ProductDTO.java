@@ -18,6 +18,7 @@ public class ProductDTO {
     private Location location;
     private List<Image> images;
     private List<Item> items;
+    private List<Rating> ratings;
 
 
 
