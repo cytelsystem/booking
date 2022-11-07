@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class CityService implements IService<City> {
-    private final Logger logger = Logger.getLogger(CategoryService.class);
+    private final Logger logger = Logger.getLogger(CityService.class);
 
     @Autowired
     private CityRepository cityRepository;
