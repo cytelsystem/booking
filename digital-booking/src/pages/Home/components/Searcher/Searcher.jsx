@@ -6,19 +6,25 @@ import Typehead from '../../../../shared/Input/Typehead';
 import titleCase from '../../../../utils/titleCase';
 import { getValidationErrors } from '../../../../utils/validationErrors';
 
-const Searcher = ({ setDate, setPlace, setPlaceValidation, setDateValidation, typeHeadOptions, search }) => {
-
+const Searcher = ({
+   setDate,
+   setPlace,
+   setPlaceValidation,
+   setDateValidation,
+   typeHeadOptions,
+   search,
+}) => {
    const typeHeadOptionsMapper = () => {
-      return typeHeadOptions.map((option) => {
+      return typeHeadOptions.map(option => {
          return {
             id: option.id,
             title: `${titleCase(option.name)} - ${titleCase(option.state)}`,
             subtitle: option.country,
-            icon: <LocationIcon/>
-         }
-      })
-   }
-   
+            icon: <LocationIcon />,
+         };
+      });
+   };
+
    return (
       <section className="searcher">
          <h1>Busca ofertas en hoteles, casas y mucho más</h1>
@@ -44,7 +50,9 @@ const Searcher = ({ setDate, setPlace, setPlaceValidation, setDateValidation, ty
                minDate={new Date()}
                setInputValidation={setDateValidation}
             />
-            <Button classList={'searchButton db-button-primary'} action={search}>Buscar</Button>
+            <Button classList={'searchButton db-button-primary'} action={search}>
+               Buscar
+            </Button>
          </div>
       </section>
    );
