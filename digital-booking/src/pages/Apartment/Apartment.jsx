@@ -35,8 +35,6 @@ const Apartment = () => {
          return;
       }
 
-      console.log(currentProduct);
-
       const loadingPageHide = gsap.to('.db-loading-page', {
          delay: 0.2,
          opacity: 0,
