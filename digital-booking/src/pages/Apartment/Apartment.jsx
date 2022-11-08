@@ -15,16 +15,26 @@ import ShareIcon from '../../shared/Icons/ShareIcon';
 import HeartIcon from '../../shared/Icons/HeartIcon';
 import Map from './Components/Map';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
+import HeartFilledIcon from '../../shared/Icons/HeartFilledIcon';
+import { toggleFavoriteLocal } from '../../core/services/Favorite';
 
 const Apartment = () => {
    const { apartmentId } = useParams();
    const [currentProduct, setCurrentProduct] = useState(null);
-
    const [imageIndex, setImageIndex] = useState(1);
+   const [isFavorite, setIsFavorite] = useState(false)
 
    const getProduct = async () => {
-      await getProductById(apartmentId).then(product => setCurrentProduct(product));
+      await getProductById(apartmentId).then(product => {
+         setCurrentProduct(product[0])
+         setIsFavorite(product[0].isFavorite);
+      });
    };
+
+   const toggleFavorite = async () => {
+      await toggleFavoriteLocal(currentProduct.id);
+      setIsFavorite(!isFavorite);
+   }
 
    useEffect(() => {
       getProduct();
@@ -85,9 +95,14 @@ const Apartment = () => {
                   <span>
                      <ShareIcon />
                   </span>
-                  <span>
-                     <HeartIcon />
-                  </span>
+                  {isFavorite ?
+                     <span onClick={toggleFavorite} >
+                        <HeartFilledIcon isFavorite={isFavorite}/> 
+                     </span> : 
+                     <span onClick={toggleFavorite}>
+                        <HeartIcon  />
+                     </span>
+                  } 
                </div>
                <Images
                   imageIndex={imageIndex}
