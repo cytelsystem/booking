@@ -35,6 +35,8 @@ const Apartment = () => {
          return;
       }
 
+      console.log(currentProduct);
+
       const loadingPageHide = gsap.to('.db-loading-page', {
          delay: 0.2,
          opacity: 0,
@@ -89,10 +91,7 @@ const Apartment = () => {
                      <HeartIcon />
                   </span>
                </div>
-               <Images
-                  imageIndex={imageIndex}
-                  images={[currentProduct.images[0], ...currentProduct.images.slice(1)]}
-               />
+               <Images imageIndex={imageIndex} images={currentProduct.images} />
                <Description title={currentProduct.title}>{currentProduct.description}</Description>
                <Amenities amenities={currentProduct.amenities} />
                <Availability disabledDays={['2022/11/25', '2022/11/26', '2022/11/27']} />
