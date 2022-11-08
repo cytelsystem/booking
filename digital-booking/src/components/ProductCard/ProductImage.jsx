@@ -6,7 +6,7 @@ export default function ProductImage({url, productName, addFavorite, isFavorite}
         <div className="db-product-image">
             <img src={url} alt={productName} title={productName} width="100%" height="100%"/>
             <span className={isFavorite ? 'db-favorite' : ''} onClick={addFavorite}>
-                <HeartFilledIcon/>
+                <HeartFilledIcon isFavorite={isFavorite} />
             </span>
         </div>
     )
