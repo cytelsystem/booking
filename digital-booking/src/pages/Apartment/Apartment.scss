@@ -198,6 +198,7 @@
 
          &:hover .db-toggle-button {
             text-decoration: underline;
+
          }
 
          @media screen and (min-width: 1028px) {
@@ -264,7 +265,7 @@
       width: 100%;
       position: fixed;
       top: 0;
-      z-index: 10;
+      z-index: 20;
 
       &.hidden {
          display: none;
@@ -328,7 +329,7 @@
                margin-bottom: .8rem;
             }
 
-            svg {
+            svg path{
                fill: var(--color-primary);
             }
          }
@@ -418,7 +419,7 @@
          border-radius: var(--border-radius-big);
          margin: auto;
          width: 100%;
-         
+
       }
    }
 
