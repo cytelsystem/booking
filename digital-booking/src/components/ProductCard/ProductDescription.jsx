@@ -19,7 +19,7 @@ export default function ProductDescription({
          <div className="db-product-header">
             <div className="db-product-title">
                <h4 className="db-product-category"><span>{category.title}</span><Rating rate={rate && rate.score}/></h4>
-               <h1>{title}</h1>
+               <h2>{title}</h2>
             </div>
             <div className="db-product-rate">
                <div className="db-product-points">{rate && rate.score * 2}</div>
