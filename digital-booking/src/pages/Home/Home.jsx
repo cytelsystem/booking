@@ -19,7 +19,7 @@ const Home = () => {
    const categoriesAnimated = useRef(false);
    const recomendationsAnimated = useRef(false);
 
-   const [currentProducts, setCurrentProducts] = useState([]);
+   const [currentProducts, setCurrentProducts] = useState(null);
    const [isLoading, setIsLoading] = useState(false);
 
    const searchForm = {
@@ -31,7 +31,7 @@ const Home = () => {
       setIsLoading(true);
       setCurrentProducts([]);
       await getProductByQuery(searchForm).then(products => {
-         setCurrentProducts(products)
+         setCurrentProducts(products);
          setIsLoading(false);
       });
    };
@@ -74,7 +74,7 @@ const Home = () => {
    }, [appContext]);
 
    useEffect(() => {
-      if (!currentProducts.length || recomendationsAnimated.current ) {
+      if (!currentProducts || recomendationsAnimated.current) {
          return;
       }
 
@@ -93,8 +93,6 @@ const Home = () => {
       });
 
       recomendationsAnimated.current = true;
-
-      
    }, [currentProducts]);
 
    useEffect(() => {
@@ -108,7 +106,7 @@ const Home = () => {
 
    return (
       <>
-         {isLoading ? <LoadingComponent/> : null}
+         {isLoading ? <LoadingComponent /> : null}
 
          <div id="home">
             <Searcher
@@ -131,7 +129,7 @@ const Home = () => {
             </div>
             <div className="db-component-container db-recommendations-container">
                <LoadingComponent />
-               {currentProducts.length ? <Recomendations products={currentProducts} /> : null}
+               {currentProducts ? <Recomendations products={currentProducts} /> : null}
             </div>
          </div>
       </>

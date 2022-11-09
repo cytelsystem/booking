@@ -5,23 +5,27 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { months, weekDays } from '../../../utils/spanishCalendar';
 import Reservation from './Reservation';
 
-const Availability = ({disabledDays, currentDates}) => {
+const Availability = ({ disabledDays, currentDates }) => {
    const [isMobile, setIsMobile] = useState(null);
    const [calendarDates, setCalendarDates] = useState([]);
 
-   const mapDaysF = ({date}) => {
-      if (disabledDays && disabledDays.includes(date.toString())) return {
-         disabled: true,
-         style: { color: "#ccc" },
-         onClick: () => alert("weekends are disabled")
-      }
-   }
+   const mapDaysF = ({ date }) => {
+      if (disabledDays && disabledDays.includes(date.toString()))
+         return {
+            disabled: true,
+            style: { color: '#ccc' },
+            onClick: () => alert('weekends are disabled'),
+         };
+   };
 
    useEffect(() => {
+      if (!currentDates) {
+         return;
+      }
+
       const dates = currentDates.split(',');
       setCalendarDates([dates[0], dates[1]]);
-      console.log(calendarDates)
-   }, [currentDates])
+   }, [currentDates]);
 
    useEffect(() => {
       const changeCalendar = () => {
@@ -40,8 +44,8 @@ const Availability = ({disabledDays, currentDates}) => {
    return (
       <section className="db-apartment-availability">
          <SectionTitle>Fechas disponibles</SectionTitle>
-         <div className='db-apartment-availability-container'>
-            <div className='db-apartment-availability-calendar'>
+         <div className="db-apartment-availability-container">
+            <div className="db-apartment-availability-calendar">
                <Calendar
                   mapDays={mapDaysF}
                   numberOfMonths={isMobile ? 1 : 2}
@@ -53,10 +57,9 @@ const Availability = ({disabledDays, currentDates}) => {
                   value={calendarDates}
                />
             </div>
-            
-            <Reservation/>
+
+            <Reservation />
          </div>
-         
       </section>
    );
 };
