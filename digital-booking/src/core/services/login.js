@@ -12,7 +12,8 @@ export async function registerUser(userForm) {
 export async function loginUser(loginForm) {
    const credentials = formStateMapper(loginForm);
    const user = {
-      name: 'Usuario',
+      id: 1,
+      name: 'User',
       lastName: 'Logged',
       email: 'user@gmail.com',
       password: '1234567'
