@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
 import './Home.scss';
-import LocationIcon from '../../shared/Icons/locationIcon';
 import Categories from './components/Categories/Categories';
 import Recomendations from './components/Recomendations/Recomendations';
 import Searcher from './components/Searcher/Searcher';
@@ -21,6 +20,7 @@ const Home = () => {
    const recomendationsAnimated = useRef(false);
 
    const [currentProducts, setCurrentProducts] = useState([]);
+   const [isLoading, setIsLoading] = useState(false);
 
    const searchForm = {
       city: { state: useState(null), isValid: useState(false) },
@@ -28,11 +28,21 @@ const Home = () => {
    };
 
    const search = async () => {
-      await getProductByQuery(searchForm).then(products => setCurrentProducts(products));
+      setIsLoading(true);
+      setCurrentProducts([]);
+      await getProductByQuery(searchForm).then(products => {
+         setCurrentProducts(products)
+         setIsLoading(false);
+      });
    };
 
    const searchByCategory = async category => {
-      await getProductByCategory(category).then(products => setCurrentProducts(products));
+      setIsLoading(true);
+      setCurrentProducts([]);
+      await getProductByCategory(category).then(products => {
+         setCurrentProducts(products);
+         setIsLoading(false);
+      });
    };
 
    useEffect(() => {
@@ -64,7 +74,7 @@ const Home = () => {
    }, [appContext]);
 
    useEffect(() => {
-      if (!currentProducts.length || recomendationsAnimated.current) {
+      if (!currentProducts.length || recomendationsAnimated.current ) {
          return;
       }
 
@@ -83,16 +93,23 @@ const Home = () => {
       });
 
       recomendationsAnimated.current = true;
+
+      
    }, [currentProducts]);
 
    useEffect(() => {
       if (searchForm.city.state[0] === null && searchForm.date.state[0] === null) {
-         getProducts().then(products => setCurrentProducts(products));
+         getProducts().then(products => {
+            setCurrentProducts(products);
+            setIsLoading(false);
+         });
       }
    }, [searchForm.city.state[0], searchForm.date.state[0]]);
 
    return (
       <>
+         {isLoading ? <LoadingComponent/> : null}
+
          <div id="home">
             <Searcher
                setDate={searchForm.date.state[1]}
@@ -101,6 +118,7 @@ const Home = () => {
                setDateValidation={searchForm.date.isValid[1]}
                typeHeadOptions={appContext.cities}
                search={search}
+               isLoading={isLoading}
             />
             <div className="db-component-container db-categories-container">
                <LoadingComponent />
@@ -113,7 +131,7 @@ const Home = () => {
             </div>
             <div className="db-component-container db-recommendations-container">
                <LoadingComponent />
-               {currentProducts.length && <Recomendations products={currentProducts} />}
+               {currentProducts.length ? <Recomendations products={currentProducts} /> : null}
             </div>
          </div>
       </>
